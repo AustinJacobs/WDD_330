@@ -1,7 +1,8 @@
 const links = [
     {
         label: "Week 1",
-        url: "week1/index.html"
+        url: "week1/index.html",
+        
     },
 
     {
@@ -22,5 +23,4 @@ links.forEach((item)=> {
     a.innerHTML = item.label;
 
     document.querySelector('ol').appendChild(li);
-    
 })

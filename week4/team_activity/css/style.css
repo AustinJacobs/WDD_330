@@ -1,0 +1,27 @@
+#board {
+    display: grid;
+    grid-template-columns: 50px 50px 50px;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
+}
+
+.square {
+    border: 1px solid black;
+    text-align: center;
+    height: 50px;
+    width: 50px;
+}
+
+.container {
+    font-size: 3em;
+}
+
+h1 {
+    text-align: center;
+}
+
+button {
+    margin: 0 auto;
+    display: block;
+    margin-top: 10px;
+}

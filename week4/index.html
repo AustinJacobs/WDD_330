@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 3 Notes/Exercises</title>
+</head>
+
+<body>
+    <h1>WDD 330 Portfolio</h1>
+    <h2>Week 3 Notes/Exercises</h2>
+    <ul>
+        <li><a href="team_activity/index.html">Team Activity</a></li>
+        <li><a href="quiz_ninja_project/index.html">Quiz Ninja Project</a></li>
+        <li><a href="js/app.js">Exercises</a></li>
+    </ul>
+    <ul>
+        <h3>Object Methods: this</h3>
+        <li>A function that is a property of an object is called its method.</li>
+        <li>Arrow functions don't have their own this. </li>
+        <li>Methods allow objects to "act".</li>
+        <li>Regular functions reference the window or global variable.</li>
+    </ul>
+
+    <ul>
+        <h3>Chapter 5: Objects</h3>
+        <li>If a property’s value is a function, it is known as a method.</li>
+        <li>If you try to access a property that doesn’t exist, undefined will be returned:</li>
+        <li>hasOwnProperty() can be used to see of the object has a certain property. You can also use the 'in'
+            operator.</li>
+        <li>JSON is becoming increasingly popular as a data storage format, and many programming languages now have
+            libraries dedicated to parsing and generating it.</li>
+        <li>The parse()method takes a string of data in JSON format and returns a JavaScript object.</li>
+        <li>The stringify() method does the opposite, taking a JavaScript object and returning a string of JSON data.
+        </li>
+        <li>UTC is the primary time standard by which the world regulates clocks.</li>
+    </ul>
+
+    <ul>
+        <h3>Chapter 6: The Document Object Model</h3>
+        <li>The Document Object Model, or DOM for short, represents an HTML document as a network of connected nodes
+            that form a tree-like structure.</li>
+        <li>This means it can be used in any programming language, not just JavaScript. I did not know this. I always
+            thought that the DOM was only accessed with JavaScript and that there was no other way.</li>
+        <li>It is super cool that you can access all of the elements on a page with the DOM and perform an action. This
+            code could be very helpful: for (let i=0 ; i < document.images.length ; i++) { // do something with each
+                image using document.images[i] }</li> <li>You can get and set attributes of an HTML element with the
+                DOM.</li>
+        <li>Code to create a function that makes elements on the HTML page: function createElement (tag,text) {
+            const el = document.createElement(tag);
+            el.textContent = text;
+            return el
+            }</li>
+        <li>Every element node has a style property. This can be used to dynamically modify the presentation of any
+            element on a web page.</li>
+        <li>Camel case must be used when accessing css properties that normally contain a hyphen.</li>
+    </ul>
+
+
+    <ul>
+        <h3>Chapter 7: Events</h3>
+        <li>JavaScript uses anon-blocking approach that uses event listeners to listen out for any clicks on the page.</li>
+        <li>Event listeners are added to elements on the page and are part of the DOM.</li>
+        <li>I think that the updated way to use events makes far more sense than the old way. The new way at least makes a lot more sense to me.</li>
+        <li>We should avoid using inline event handlers?</li>
+        <li>You can find out the coordinates of a user click in at least three different ways.</li>
+        <li>We should be careful using the click and dblclick on the same element.</li>
+    </ul>
+
+    <h2>Questions</h2>
+    <ul>
+        <li>I have never heard of createTextNode(). In order to place text inside of an element with .innerHTML does a
+            textNode need to be created for that element?</li>
+        <li>What is the downside to using inline JavaScript onload=""?
+        </li>
+        <li>When would it be useful to know what keys were pressed? The chapter covered this extensively, but I still don't quite understand why it would be important?</li>
+    </ul>
+</body>
+
+</html>

@@ -17,66 +17,52 @@
         <li><a href="js/app.js">Exercises</a></li>
     </ul>
     <ul>
-        <h3>Object Methods: this</h3>
-        <li>A function that is a property of an object is called its method.</li>
-        <li>Arrow functions don't have their own this. </li>
-        <li>Methods allow objects to "act".</li>
-        <li>Regular functions reference the window or global variable.</li>
+        <h3>Chapter 8: Forms</h3>
+        <li>A button with the type of reset can be used to reset all the form fields. No additional code is needed.</li>
+        <li>The placeholder functionality decreases significantly the amount of code needed to be written to have placeholder text in an input field. </li>
+        <li>There are multiple types of input fields. </li>
+        <li>Using the input type password, the text entered into the input field will be obfuscated.</li>
+        <li>Checkbox information can be saved in an array and looped over to show them in the document.</li>
+        <li>There is a basic API for form validation, but for more complex validation a custom one needs to be created.</li>
+        <li>Forms are the best way to enter data into the browser so that it can be sent to the backend with JavaScript.</li>
     </ul>
 
     <ul>
-        <h3>Chapter 5: Objects</h3>
-        <li>If a property’s value is a function, it is known as a method.</li>
-        <li>If you try to access a property that doesn’t exist, undefined will be returned:</li>
-        <li>hasOwnProperty() can be used to see of the object has a certain property. You can also use the 'in'
-            operator.</li>
-        <li>JSON is becoming increasingly popular as a data storage format, and many programming languages now have
-            libraries dedicated to parsing and generating it.</li>
-        <li>The parse()method takes a string of data in JSON format and returns a JavaScript object.</li>
-        <li>The stringify() method does the opposite, taking a JavaScript object and returning a string of JSON data.
-        </li>
-        <li>UTC is the primary time standard by which the world regulates clocks.</li>
+        <h3>Chapter 12: Object Oriented Programming</h3>
+        <li>Class names should start with an uppercase letter.</li>
+        <li>JavaScript uses a prototypal inheritance model.</li>
+        <li>JavaScript's default is to make methods public, but they can be made private.</li>
+        <li>Objects cannot have both a get() and set(). </li>
+        <li>You can avoid creating classes all together and create objects from other objects.</li>
+        <li>The main concepts of Object Oriented Programming are encapsulation, polymorphism, and inheritance.</li>
+        <li>Prototypes are live and this means that when properties and methods are added to it they are auto added to existing instances. </li>
     </ul>
 
     <ul>
-        <h3>Chapter 6: The Document Object Model</h3>
-        <li>The Document Object Model, or DOM for short, represents an HTML document as a network of connected nodes
-            that form a tree-like structure.</li>
-        <li>This means it can be used in any programming language, not just JavaScript. I did not know this. I always
-            thought that the DOM was only accessed with JavaScript and that there was no other way.</li>
-        <li>It is super cool that you can access all of the elements on a page with the DOM and perform an action. This
-            code could be very helpful: for (let i=0 ; i < document.images.length ; i++) { // do something with each
-                image using document.images[i] }</li> <li>You can get and set attributes of an HTML element with the
-                DOM.</li>
-        <li>Code to create a function that makes elements on the HTML page: function createElement (tag,text) {
-            const el = document.createElement(tag);
-            el.textContent = text;
-            return el
-            }</li>
-        <li>Every element node has a style property. This can be used to dynamically modify the presentation of any
-            element on a web page.</li>
-        <li>Camel case must be used when accessing css properties that normally contain a hyphen.</li>
-    </ul>
-
-
-    <ul>
-        <h3>Chapter 7: Events</h3>
-        <li>JavaScript uses anon-blocking approach that uses event listeners to listen out for any clicks on the page.</li>
-        <li>Event listeners are added to elements on the page and are part of the DOM.</li>
-        <li>I think that the updated way to use events makes far more sense than the old way. The new way at least makes a lot more sense to me.</li>
-        <li>We should avoid using inline event handlers?</li>
-        <li>You can find out the coordinates of a user click in at least three different ways.</li>
-        <li>We should be careful using the click and dblclick on the same element.</li>
+        <h3>Chapter 15: Modern JavaScript</h3>
+        <li>The code in a module should have a single purpose. And functions should be grouped together based on their functionality.</li>
+        <li>ES6 added support for module use in JavaScript.</li>
+        <li>All code in modules is always in strict mode without the need for 'use strict' and there is no way to opt out of this.</li>
+        <li>Using * you can import all values and functions from a file and you can give them a namespace.</li>
+        <li>Having more than one default export will result in a syntax error.</li>
     </ul>
 
     <h2>Questions</h2>
     <ul>
-        <li>I have never heard of createTextNode(). In order to place text inside of an element with .innerHTML does a
-            textNode need to be created for that element?</li>
-        <li>What is the downside to using inline JavaScript onload=""?
-        </li>
-        <li>When would it be useful to know what keys were pressed? The chapter covered this extensively, but I still don't quite understand why it would be important?</li>
+        <li>Is there ever a time when it would be better to not use classes and use objects to create objects?</li>
+        <li>How often are modules used in JavaScript? According to the book they are pretty new in JavaScript. I see that they could be very useful, but is it really useful to create a module for just a single value like PI?</li>
+        <li>Is Object Oriented Programming the most common among programming types? Where does procedural programming fall on the list of most important programming types to learn?</li>
     </ul>
+
+    <section id="form">
+        <h2>Form Practice</h2>
+            <form name='search' action='/search'>
+                <input name='searchInput'>
+                <button type='submit'>Search</button>
+                <button type='reset'>Reset</button>
+            </form>
+    </section>
+    <script src='js/main.js'></script>
 </body>
 
 </html>

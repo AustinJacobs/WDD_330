@@ -1,0 +1,71 @@
+html,
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: rgb(57, 81, 156);
+}
+
+header>h1 {
+    text-align: center;
+    color: white;
+    font-size: 3em;
+}
+
+#add_task {
+    display: grid;
+    grid-template-columns: 75% 15%;
+    justify-content: center;
+    gap: 3px;
+    height: 45px;
+    position: fixed;
+    bottom: 30px;
+    width: 100%;
+}
+
+#task_input {
+    grid-column: 1/2;
+    border-radius: 5px;
+    border: none;
+}
+
+#task_addition_button {
+    grid-column: 2/3;
+    font-size: 2em;
+    border-radius: 5px;
+    border: none;
+    background-color: #FF44CC;
+    color: white;
+}
+
+div {
+    display: grid;
+    grid-template-columns: 15% 1fr 10%;
+    align-content: center;
+}
+
+#tasks>div {
+    color: white;
+    border: none;
+    height: 100%;
+    padding: 15px;
+    font-size: 1.6em;
+    background-color: rgb(8, 26, 81);
+    margin: 0px 20px 0px 20px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#tasks>div>input[type=checkbox] {
+    transform: scale(2);
+    align-self: center;
+    justify-self: center;
+    margin: 0;
+}
+
+#tasks>div>button {
+    align-self: center;
+    justify-self: end;
+    color: white;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+}

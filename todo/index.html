@@ -20,13 +20,28 @@
         <h1>Todos</h1>
     </header>
     <main>
-        <section id="tasks">
-
-        </section>
-        <section id="add_task">
-            <input id="task_input" type="text" placeholder="Add item...">
-            <button id="task_addition_button">+</button>
-        </section>
+        <ul class="todos">
+            <div class="todos_div">
+                <input type="checkbox" name="checky" class="checkboxes">
+                <p class="todos_words">Get the groceries</p>
+                <button class="close">X</button>
+            </div>
+        </ul>
+        <div class="task_stats">
+            <p class="left"><span id="items-left">0</span> tasks left</p>
+            <div class="filter">
+                <button id="all" class="on">All</button>
+                <button id="active">Active</button>
+                <button id="completed">Completed</button>
+            </div>
+        </div>
+        <div id="position">
+            <div class="task_text_div">
+                <input type="text" class="txt-input" placeholder="Create a new todo..." spellcheck="true"
+                    id="addtask" />
+                <button id="add_btn">+</button>
+            </div>
+        </div>
     </main>
     <script src="js/main.js"></script>
 </body>

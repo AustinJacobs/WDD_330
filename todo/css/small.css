@@ -10,62 +10,100 @@ header>h1 {
     font-size: 3em;
 }
 
-#add_task {
+ul {
+    padding: 0;
+}
+
+.todos_div {
     display: grid;
-    grid-template-columns: 75% 15%;
-    justify-content: center;
-    gap: 3px;
-    height: 45px;
-    position: fixed;
-    bottom: 30px;
+    grid-template-columns: 15% 1fr 15%;
+    align-items: center;
+    background-color: rgb(8, 26, 81);
+    color: white;
+    font-size: 25px;
+    margin: 0 10px 0 10px;
+    max-width: 100%;
+    border: 1px solid rgb(29, 53, 130);
+}
+
+.todos_words {
+    margin: 10px;
+}
+
+.close {
+    background-color: transparent;
+    border: none;
+    color: white;
+    justify-self: center;
+}
+
+.checkboxes {
+    transform: scale(2);
+    justify-self: center;
+}
+
+.task_stats {
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    grid-template-rows: 1fr;
+    background-color: rgb(8, 26, 81);
+    margin: -20px 10px 0 10px;
+    border: 1px solid rgb(29, 53, 130);
+    color: white;
+}
+
+.filter {
+    display: grid;
+    grid-template-columns: 15% 35% 40%;
+    gap: 5px;
+    justify-content: left;
+    align-items: center;
+}
+
+.filter > button {
+    padding: 0;
+    margin: 0;
+    height: 30px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    font-size: 14px;
+}
+
+.left {
+    grid-column: 1/2;
+    justify-self: left;
+    align-self: center;
+    padding-left: 15px;
+    font-size: 14px;
+}
+
+#position {
+    position: absolute;
+    bottom: 10px;
     width: 100%;
 }
 
-#task_input {
-    grid-column: 1/2;
-    border-radius: 5px;
-    border: none;
-}
-
-#task_addition_button {
-    grid-column: 2/3;
-    font-size: 2em;
-    border-radius: 5px;
-    border: none;
-    background-color: #FF44CC;
-    color: white;
-}
-
-div {
+.task_text_div {
     display: grid;
-    grid-template-columns: 15% 1fr 10%;
-    align-content: center;
+    grid-template-columns: 1fr 15%;
+    margin: 0 10px 0 10px;
+    gap: 10px;
 }
 
-#tasks>div {
-    color: white;
-    border: none;
-    height: 100%;
-    padding: 15px;
-    font-size: 1.6em;
-    background-color: rgb(8, 26, 81);
-    margin: 0px 20px 0px 20px;
-    border-radius: 5px;
-    margin-bottom: 10px;
+.task_text_div > input{
+    width: 100%;
+    border: 1px solid rgb(29, 53, 130);
 }
 
-#tasks>div>input[type=checkbox] {
-    transform: scale(2);
-    align-self: center;
-    justify-self: center;
-    margin: 0;
-}
-
-#tasks>div>button {
-    align-self: center;
+.add_button_div {
     justify-self: end;
-    color: white;
-    background-color: transparent;
-    border: none;
+}
+
+#add_btn {
+    font-size: 35px;
+    padding: 0;
     margin: 0;
+    align-self: center;
+    border: 1px solid rgb(29, 53, 130);
 }

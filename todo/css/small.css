@@ -20,7 +20,7 @@ ul {
     align-items: center;
     background-color: rgb(8, 26, 81);
     color: white;
-    font-size: 25px;
+    font-size: 20px;
     margin: 0 10px 0 10px;
     max-width: 100%;
     border: 1px solid rgb(29, 53, 130);
@@ -38,7 +38,7 @@ ul {
 }
 
 .checkboxes {
-    transform: scale(2);
+    transform: scale(1.8);
     justify-self: center;
 }
 
@@ -89,6 +89,7 @@ ul {
     grid-template-columns: 1fr 15%;
     margin: 0 10px 0 10px;
     gap: 10px;
+    height: 40px;
 }
 
 .task_text_div > input{
@@ -96,12 +97,15 @@ ul {
     border: 1px solid rgb(29, 53, 130);
 }
 
+.task_text_div > button{
+    font-size: 30px;
+}
+
 .add_button_div {
     justify-self: end;
 }
 
 #add_btn {
-    font-size: 35px;
     padding: 0;
     margin: 0;
     align-self: center;

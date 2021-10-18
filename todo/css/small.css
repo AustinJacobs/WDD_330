@@ -111,3 +111,7 @@ ul {
     align-self: center;
     border: 1px solid rgb(29, 53, 130);
 }
+
+.checked {
+    text-decoration: line-through;
+}

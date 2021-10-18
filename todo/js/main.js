@@ -1,103 +1,96 @@
-// Get the id of the button that will be used to add tasks to the array of tasks.
-let add_task = document.getElementById("add_task_btn");
-// Get the class of the input field where the user will input their text so that we can use built in methods to clean it up.
-let todo_text = document.querySelector(".task_text");
-// Add an click event listener to the add_task button which will check if the item or in this case, the todo task, is not in LocalStorage. If it isn't then the task will be added to an empty array. If the task is in the LocalStorage, then it will use the .getItem to retrieve it.
-add_task.addEventListener("click", function () {
-    let item = todo_text.value.trim();
-    if (item) {
-        todo_text.value = "";
-        let todo_items = !localStorage.getItem("todo_items") ? [] :
-            JSON.parse(localStorage.getItem("todo_items"));
-        // Create a current todo object that will store the item, or todo task, and also create a property of isCompleted and set that to false. In the future I will update this isCompleted to true in order to filter out certain tasks.
-        let currentTodo = {
-            item,
-            isCompleted: false,
-        };
-        // Call the addTodo function and pass the array with the currentTodo into it. Then add the currentTodo to the todo_items. Add it to LocalStorage.
-        addTodo([currentTodo]);
-        todo_items.push(currentTodo);
-        localStorage.setItem("todo_items", JSON.stringify(todo_items));
+const todoObjectList = [];
+
+
+
+class Todo_Class {
+    constructor(item) {
+        this.ulElement = item;
     }
-});
 
-function addTodo(todo_items = JSON.parse(localStorage.getItem("todo_items"))) {
-    if (!todo_items) {
-        return null;
-    }
-    let itemsLeft = document.getElementById("items_left");
-    // Using a forEach method on the todo_items array, create all of the elements that are needed to display.
-    todo_items.forEach(function (todo) {
-        let todo_item = document.createElement("div");
-        let checkbox = document.createElement("input");
-        let todo_p = document.createElement("p");
-        let close_button = document.createElement("button");
+    add() {
+        const todoInput = document.querySelector("#myInput").value;
+        if (todoInput == "") {
+            alert("You did not enter any item!")
+        } else {
+            const todoObject = {
+                id: todoObjectList.length,
+                todoText: todoInput,
+                isDone: false,
+            }
 
-        // Add classes
-        todo_item.classList.add("todos_div");
-        checkbox.classList.add("checkboxes");
-        todo_p.classList.add("todos_words")
-        close_button.classList.add("close")
+            todoObjectList.unshift(todoObject);
+            this.display();
+            document.querySelector("#myInput").value = '';
 
-        // Set checkbox attribute
-        checkbox.setAttribute("type", "checkbox");
-        close_button.innerHTML = "X";
-
-        // Set the textContent of the todo to the input of the user.
-        todo_p.textContent = todo.item;
-
-
-        if (todo.isCompleted) {
-            todo_item.classList.add("checked");
-            checkbox.setAttribute("checked", "checked");
         }
+    }
 
-        // Add click listener to checkbox
-        checkbox.addEventListener("click", function () {
-            let checked_task = this.parentElement.parentElement;
-            const checked = this.checked;
-            stateTodo(
-                [...document.querySelectorAll(".todo_items .todo_item")].indexOf(
-                    checked_task
-                ),
-                checked
-            );
-            checked
-                ?
-                checked_task.classList.add("checked") :
-                checked_task.classList.remove("checked");
-            itemsLeft.textContent = document.querySelectorAll(
-                ".todo_items .todo_item:not(.checked)"
-            ).length;
-        });
+    done_undone(x) {
+        const selectedTodoIndex = todoObjectList.findIndex((item) => item.id == x);
+        console.log(todoObjectList[selectedTodoIndex].isDone);
+        todoObjectList[selectedTodoIndex].isDone == false ? todoObjectList[selectedTodoIndex].isDone = true : todoObjectList[selectedTodoIndex].isDone = false;
+        this.display();
+    }
 
-        // Add click listener to clear button
-        close_button.addEventListener("click", function () {
-            let checked_task = this.parentElement;
-            checked_task.classList.add("fall");
-            removeTodo(
-                [...document.querySelectorAll(".todo_items .todo_item")].indexOf(
-                    checked_task
-                )
-            );
-            checked_task.addEventListener("animationend", function () {
-                setTimeout(function () {
-                    checked_task.remove();
-                    itemsLeft.textContent = document.querySelectorAll(
-                        ".todo_items .todo_item:not(.checked)"
-                    ).length;
-                }, 100);
-            });
-        });
+    deleteElement(z) {
+        const selectedDelIndex = todoObjectList.findIndex((item) => item.id == z);
 
-        // parent.appendChild(child)
-        todo_item.appendChild(checkbox);
-        todo_item.appendChild(todo_p);
-        todo_item.appendChild(close_button);
-        document.querySelector(".todos").appendChild(todo_item);
-    });
-    // Update itemsLeft
-    itemsLeft.textContent = document.querySelectorAll(
-        ".todo_items .todo_item:not(.checked)"
-    ).length;
+        todoObjectList.splice(selectedDelIndex, 1);
+
+        this.display();
+    }
+
+
+    display() {
+        this.ulElement.innerHTML = "";
+
+        todoObjectList.forEach((object_item) => {
+
+            const liElement = document.createElement("li");
+            const delBtn = document.createElement("button");
+
+            liElement.innerText = object_item.todoText;
+            liElement.setAttribute("data-id", object_item.id);
+
+            delBtn.setAttribute("data-id", object_item.id);
+            delBtn.classList.add("far", "fa-trash-alt");
+
+            liElement.appendChild(delBtn);
+
+            delBtn.addEventListener("click", function (e) {
+                const deleteId = e.target.getAttribute("data-id");
+                myTodoList.deleteElement(deleteId);
+            })
+
+            liElement.addEventListener("click", function (e) {
+                const selectedId = e.target.getAttribute("data-id");
+                myTodoList.done_undone(selectedId);
+            })
+
+            if (object_item.isDone) {
+                liElement.classList.add("checked");
+            }
+
+            this.ulElement.appendChild(liElement);
+        })
+    }
 }
+
+
+
+
+////-----MAIN PROGRAM------------
+const listSection = document.querySelector(".todos");
+
+myTodoList = new Todo_Class(listSection);
+
+
+document.querySelector(".addBtn").addEventListener("click", function () {
+    myTodoList.add()
+})
+
+document.querySelector("#myInput").addEventListener("keydown", function (e) {
+    if (e.keyCode == 13) {
+        myTodoList.add()
+    }
+})

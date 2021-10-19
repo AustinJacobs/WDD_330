@@ -1,7 +1,8 @@
 // const list_of_todos = [];
 
 let list_of_todos = JSON.parse(localStorage.getItem("list_of_todos") || "[]");
-list_of_todos.display()
+
+divElement.localStorage.getItem("list_of_todos") || "[]";
 
 class TodoTask {
     constructor(item) {

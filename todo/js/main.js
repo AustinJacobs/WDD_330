@@ -1,4 +1,6 @@
-const list_of_todos = [];
+// const list_of_todos = [];
+
+ let list_of_todos = JSON.parse(localStorage.getItem("list_of_todos") || "[]");
 
 class TodoTask {
     constructor(item) {
@@ -22,12 +24,11 @@ class TodoTask {
         }
     }
 
-    done_undone(x) {
-        const selectedTodoIndex = list_of_todos.findIndex((item) => item.id == x);
-        console.log(list_of_todos[selectedTodoIndex].isDone);
-        list_of_todos[selectedTodoIndex].isDone == false ? list_of_todos[selectedTodoIndex].isDone = true : list_of_todos[selectedTodoIndex].isDone = false;
-        this.display();
-    }
+    // done_undone(x) {
+    //     const selectedTodoIndex = list_of_todos.findIndex((item) => item.id == x);
+    //     list_of_todos[selectedTodoIndex].isDone == false ? list_of_todos[selectedTodoIndex].isDone = true : list_of_todos[selectedTodoIndex].isDone = false;
+    //     this.display();
+    // }
 
     deleteElement(z) {
         const selectedDelIndex = list_of_todos.findIndex((item) => item.id == z);
@@ -64,16 +65,16 @@ class TodoTask {
             divElement.appendChild(checkbox);
             divElement.appendChild(paragraph);
             divElement.appendChild(delete_button);
-            
+
             delete_button.addEventListener("click", function (e) {
                 const deleteId = e.target.getAttribute("data-id");
                 UserTodoList.deleteElement(deleteId);
             })
 
-            divElement.addEventListener("click", function (e) {
-                const selectedId = e.target.getAttribute("data-id");
-                UserTodoList.done_undone(selectedId);
-            })
+            // divElement.addEventListener("click", function (e) {
+            //     const selectedId = e.target.getAttribute("data-id");
+            //     UserTodoList.done_undone(selectedId);
+            // })
 
             if (object_item.isDone) {
                 paragraph.classList.add("checked");
@@ -86,6 +87,13 @@ class TodoTask {
             let tasksLeft = document.getElementById("items_left");
             tasksLeft.innerHTML = list_of_todos.length;
         })
+
+        localStorage.setItem("list_of_todos", JSON.stringify(list_of_todos));
+
+        let tasksLeft = document.getElementById("items_left");
+        if (list_of_todos.length == 0) {
+            tasksLeft.innerHTML = "0";
+        }
     }
 }
 
@@ -102,4 +110,4 @@ document.querySelector("#user_task_text").addEventListener("keydown", function (
     if (e.keyCode == 13) {
         UserTodoList.addTask()
     }
-})
+});

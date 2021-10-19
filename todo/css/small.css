@@ -14,6 +14,10 @@ ul {
     padding: 0;
 }
 
+.checked {
+    text-decoration: line-through;
+}
+
 .todos_div {
     display: grid;
     grid-template-columns: 15% 1fr 15%;
@@ -110,8 +114,4 @@ ul {
     margin: 0;
     align-self: center;
     border: 1px solid rgb(29, 53, 130);
-}
-
-.checked {
-    text-decoration: line-through;
 }

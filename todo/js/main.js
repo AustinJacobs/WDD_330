@@ -1,96 +1,105 @@
-const todoObjectList = [];
+const list_of_todos = [];
 
-
-
-class Todo_Class {
+class TodoTask {
     constructor(item) {
-        this.ulElement = item;
+        this.primaryElement = item;
     }
 
-    add() {
-        const todoInput = document.querySelector("#myInput").value;
-        if (todoInput == "") {
+    addTask() {
+        let task_text = document.querySelector("#user_task_text").value;
+        if (task_text == "") {
             alert("You did not enter any item!")
         } else {
             const todoObject = {
-                id: todoObjectList.length,
-                todoText: todoInput,
+                id: list_of_todos.length,
+                todoText: task_text,
                 isDone: false,
             }
 
-            todoObjectList.unshift(todoObject);
+            list_of_todos.unshift(todoObject);
             this.display();
-            document.querySelector("#myInput").value = '';
-
+            document.querySelector("#user_task_text").value = '';
         }
     }
 
     done_undone(x) {
-        const selectedTodoIndex = todoObjectList.findIndex((item) => item.id == x);
-        console.log(todoObjectList[selectedTodoIndex].isDone);
-        todoObjectList[selectedTodoIndex].isDone == false ? todoObjectList[selectedTodoIndex].isDone = true : todoObjectList[selectedTodoIndex].isDone = false;
+        const selectedTodoIndex = list_of_todos.findIndex((item) => item.id == x);
+        console.log(list_of_todos[selectedTodoIndex].isDone);
+        list_of_todos[selectedTodoIndex].isDone == false ? list_of_todos[selectedTodoIndex].isDone = true : list_of_todos[selectedTodoIndex].isDone = false;
         this.display();
     }
 
     deleteElement(z) {
-        const selectedDelIndex = todoObjectList.findIndex((item) => item.id == z);
+        const selectedDelIndex = list_of_todos.findIndex((item) => item.id == z);
 
-        todoObjectList.splice(selectedDelIndex, 1);
+        list_of_todos.splice(selectedDelIndex, 1);
 
         this.display();
     }
 
 
     display() {
-        this.ulElement.innerHTML = "";
+        this.primaryElement.innerHTML = "";
 
-        todoObjectList.forEach((object_item) => {
+        list_of_todos.forEach((object_item) => {
 
-            const liElement = document.createElement("li");
-            const delBtn = document.createElement("button");
+            const divElement = document.createElement("div");
+            const delete_button = document.createElement("button");
+            const checkbox = document.createElement("input");
+            const paragraph = document.createElement("p");
 
-            liElement.innerText = object_item.todoText;
-            liElement.setAttribute("data-id", object_item.id);
+            paragraph.setAttribute("class", "todos_words");
 
-            delBtn.setAttribute("data-id", object_item.id);
-            delBtn.classList.add("far", "fa-trash-alt");
+            checkbox.type = "checkbox";
+            checkbox.setAttribute("class", "checkboxes");
 
-            liElement.appendChild(delBtn);
+            paragraph.innerHTML = object_item.todoText;
+            paragraph.setAttribute("data-id", object_item.id);
+            divElement.setAttribute("class", "todos_div");
 
-            delBtn.addEventListener("click", function (e) {
+            delete_button.setAttribute("data-id", object_item.id);
+            delete_button.setAttribute("class", "close");
+            delete_button.innerHTML = "X";
+
+            divElement.appendChild(checkbox);
+            divElement.appendChild(paragraph);
+            divElement.appendChild(delete_button);
+            
+            delete_button.addEventListener("click", function (e) {
                 const deleteId = e.target.getAttribute("data-id");
-                myTodoList.deleteElement(deleteId);
+                UserTodoList.deleteElement(deleteId);
             })
 
-            liElement.addEventListener("click", function (e) {
+            divElement.addEventListener("click", function (e) {
                 const selectedId = e.target.getAttribute("data-id");
-                myTodoList.done_undone(selectedId);
+                UserTodoList.done_undone(selectedId);
             })
 
             if (object_item.isDone) {
-                liElement.classList.add("checked");
+                paragraph.classList.add("checked");
             }
 
-            this.ulElement.appendChild(liElement);
+            let ulAppend = document.querySelector(".todos");
+
+            ulAppend.appendChild(divElement);
+
+            let tasksLeft = document.getElementById("items_left");
+            tasksLeft.innerHTML = list_of_todos.length;
         })
     }
 }
 
-
-
-
 ////-----MAIN PROGRAM------------
 const listSection = document.querySelector(".todos");
 
-myTodoList = new Todo_Class(listSection);
+UserTodoList = new TodoTask(listSection);
 
-
-document.querySelector(".addBtn").addEventListener("click", function () {
-    myTodoList.add()
+document.querySelector("#add_button").addEventListener("click", function () {
+    UserTodoList.addTask()
 })
 
-document.querySelector("#myInput").addEventListener("keydown", function (e) {
+document.querySelector("#user_task_text").addEventListener("keydown", function (e) {
     if (e.keyCode == 13) {
-        myTodoList.add()
+        UserTodoList.addTask()
     }
 })

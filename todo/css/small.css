@@ -28,6 +28,7 @@ ul {
     margin: 0 10px 0 10px;
     max-width: 100%;
     border: 1px solid rgb(29, 53, 130);
+    padding: 5px;
 }
 
 .todos_words {
@@ -54,6 +55,7 @@ ul {
     margin: -20px 10px 0 10px;
     border: 1px solid rgb(29, 53, 130);
     color: white;
+    padding: 5px;
 }
 
 .filter {
@@ -92,13 +94,13 @@ ul {
     display: grid;
     grid-template-columns: 1fr 15%;
     margin: 0 10px 0 10px;
-    gap: 10px;
     height: 40px;
 }
 
 .task_text_div > input{
     width: 100%;
     border: 1px solid rgb(29, 53, 130);
+    margin-right: 15px;
 }
 
 .task_text_div > button{

@@ -2,8 +2,6 @@
 
 let list_of_todos = JSON.parse(localStorage.getItem("list_of_todos") || "[]");
 
-divElement.localStorage.getItem("list_of_todos") || "[]";
-
 class TodoTask {
     constructor(item) {
         this.primaryElement = item;
@@ -12,7 +10,7 @@ class TodoTask {
     addTask() {
         let task_text = document.querySelector("#user_task_text").value;
         if (task_text == "") {
-            alert("You did not enter any item!")
+            alert("Please enter a task!")
         } else {
             const todoObject = {
                 id: list_of_todos.length,
@@ -39,7 +37,6 @@ class TodoTask {
 
         this.display();
     }
-
 
     display() {
         this.primaryElement.innerHTML = "";
@@ -96,6 +93,7 @@ class TodoTask {
         if (list_of_todos.length == 0) {
             tasksLeft.innerHTML = "0";
         }
+        // html_div.localStorage.getItem("list_of_todos") || "[]";
     }
 }
 
@@ -103,6 +101,7 @@ class TodoTask {
 const listSection = document.querySelector(".todos");
 
 UserTodoList = new TodoTask(listSection);
+UserTodoList.display()
 
 document.querySelector("#add_button").addEventListener("click", function () {
     UserTodoList.addTask()

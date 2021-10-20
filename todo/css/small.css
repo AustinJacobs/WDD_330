@@ -110,11 +110,12 @@ ul {
     justify-self: end;
 }
 
-#add_btn {
-    padding: 0;
+#add_button {
+    padding: 5px;
     margin: 0;
     align-self: center;
     border: 1px solid rgb(29, 53, 130);
+    width: 100%;
 }
 
 .filter .on {

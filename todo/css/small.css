@@ -84,7 +84,7 @@ ul {
 
 #position {
     position: absolute;
-    bottom: 10px;
+    bottom: 30px;
     width: 100%;
 }
 
@@ -103,6 +103,7 @@ ul {
 
 .task_text_div > button{
     font-size: 30px;
+    width: 50px;
 }
 
 .add_button_div {

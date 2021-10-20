@@ -1,5 +1,3 @@
-// const list_of_todos = [];
-
 let list_of_todos = JSON.parse(localStorage.getItem("list_of_todos") || "[]");
 
 class TodoTask {
@@ -24,13 +22,13 @@ class TodoTask {
         }
     }
 
-    // done_undone(x) {
-    //     const selectedTodoIndex = list_of_todos.findIndex((item) => item.id == x);
-    //     list_of_todos[selectedTodoIndex].isDone == false ? list_of_todos[selectedTodoIndex].isDone = true : list_of_todos[selectedTodoIndex].isDone = false;
-    //     this.display();
-    // }
+    done_undone(x) {
+        const selectedTodoIndex = list_of_todos.findIndex((item) => item.id == x);
+        list_of_todos[selectedTodoIndex].isDone == false ? list_of_todos[selectedTodoIndex].isDone = true : list_of_todos[selectedTodoIndex].isDone = false;
+        this.display();
+    }
 
-    deleteElement(z) {
+    deleteTask(z) {
         const selectedDelIndex = list_of_todos.findIndex((item) => item.id == z);
 
         list_of_todos.splice(selectedDelIndex, 1);
@@ -46,15 +44,16 @@ class TodoTask {
             const divElement = document.createElement("div");
             const delete_button = document.createElement("button");
             const checkbox = document.createElement("input");
-            const paragraph = document.createElement("p");
+            const span = document.createElement("span");
 
-            paragraph.setAttribute("class", "todos_words");
+            span.setAttribute("class", "todos_words");
 
             checkbox.type = "checkbox";
             checkbox.setAttribute("class", "checkboxes");
+            checkbox.setAttribute("data-id", object_item.id);
 
-            paragraph.innerHTML = object_item.todoText;
-            paragraph.setAttribute("data-id", object_item.id);
+            span.innerHTML = object_item.todoText;
+            span.setAttribute("data-id", object_item.id);
             divElement.setAttribute("class", "todos_div");
 
             delete_button.setAttribute("data-id", object_item.id);
@@ -62,21 +61,22 @@ class TodoTask {
             delete_button.innerHTML = "X";
 
             divElement.appendChild(checkbox);
-            divElement.appendChild(paragraph);
+            divElement.appendChild(span);
             divElement.appendChild(delete_button);
 
             delete_button.addEventListener("click", function (e) {
                 const deleteId = e.target.getAttribute("data-id");
-                UserTodoList.deleteElement(deleteId);
+                UserTodoList.deleteTask(deleteId);
             })
 
-            // divElement.addEventListener("click", function (e) {
-            //     const selectedId = e.target.getAttribute("data-id");
-            //     UserTodoList.done_undone(selectedId);
-            // })
+            divElement.addEventListener("click", function (e) {
+                const selectedId = e.target.getAttribute("data-id");
+                UserTodoList.done_undone(selectedId);
+            })
 
             if (object_item.isDone) {
-                paragraph.classList.add("checked");
+                span.classList.add("checked");
+                checkbox.checked = true;
             }
 
             let ulAppend = document.querySelector(".todos");
@@ -93,7 +93,10 @@ class TodoTask {
         if (list_of_todos.length == 0) {
             tasksLeft.innerHTML = "0";
         }
-        // html_div.localStorage.getItem("list_of_todos") || "[]";
+
+        const all = document.getElementById("all");
+        const active = document.getElementById("active");
+        const completed = document.getElementById("completed");
     }
 }
 

@@ -69,7 +69,12 @@ class TodoTask {
                 UserTodoList.deleteTask(deleteId);
             })
 
-            divElement.addEventListener("click", function (e) {
+            span.addEventListener("click", function (e) {
+                const selectedId = e.target.getAttribute("data-id");
+                UserTodoList.done_undone(selectedId);
+            })
+
+            checkbox.addEventListener("click", function (e) {
                 const selectedId = e.target.getAttribute("data-id");
                 UserTodoList.done_undone(selectedId);
             })
@@ -93,17 +98,12 @@ class TodoTask {
         if (list_of_todos.length == 0) {
             tasksLeft.innerHTML = "0";
         }
-
-        const all = document.getElementById("all");
-        const active = document.getElementById("active");
-        const completed = document.getElementById("completed");
     }
 }
 
-////-----MAIN PROGRAM------------
-const listSection = document.querySelector(".todos");
+const taskSection = document.querySelector(".todos");
 
-UserTodoList = new TodoTask(listSection);
+UserTodoList = new TodoTask(taskSection);
 UserTodoList.display()
 
 document.querySelector("#add_button").addEventListener("click", function () {
@@ -115,3 +115,34 @@ document.querySelector("#user_task_text").addEventListener("keydown", function (
         UserTodoList.addTask()
     }
 });
+
+const all = document.getElementById("all");
+const active = document.getElementById("active");
+const completed = document.getElementById("completed");
+
+all.addEventListener("click", function () {
+    all.setAttribute("class", "on");
+    if (active.classList.contains("on")) {
+        active.classList.remove("on");
+    } else if (completed.classList.contains("on")) {
+        completed.classList.remove("on");
+    }
+})
+
+active.addEventListener("click", function () {
+    active.setAttribute("class", "on");
+    if (all.classList.contains("on")) {
+        all.classList.remove("on");
+    } else if (completed.classList.contains("on")) {
+        completed.classList.remove("on");
+    }
+})
+
+completed.addEventListener("click", function () {
+    completed.setAttribute("class", "on");
+    if (all.classList.contains("on")) {
+        all.classList.remove("on");
+    } else if (active.classList.contains("on")) {
+        active.classList.remove("on");
+    }
+})

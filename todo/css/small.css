@@ -66,7 +66,7 @@ ul {
     align-items: center;
 }
 
-.filter > button {
+.filter>button {
     padding: 0;
     margin: 0;
     height: 30px;
@@ -85,9 +85,15 @@ ul {
 }
 
 #position {
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
+    max-width: 680px;
 }
 
 .task_text_div {
@@ -97,13 +103,13 @@ ul {
     height: 40px;
 }
 
-.task_text_div > input{
-    width: 100%;
+.task_text_div>input {
     border: 1px solid rgb(29, 53, 130);
     margin-right: 15px;
+    width: 100%;
 }
 
-.task_text_div > button{
+.task_text_div>button {
     font-size: 30px;
     width: 50px;
 }

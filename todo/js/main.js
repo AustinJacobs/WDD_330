@@ -82,6 +82,7 @@ class TodoTask {
             if (object_item.isDone) {
                 span.classList.add("checked");
                 checkbox.checked = true;
+                divElement.classList.add("completed");
             }
 
             let ulAppend = document.querySelector(".todos");
@@ -98,6 +99,37 @@ class TodoTask {
         if (list_of_todos.length == 0) {
             tasksLeft.innerHTML = "0";
         }
+
+        const all = document.getElementById("all");
+        const active = document.getElementById("active");
+        const completed = document.getElementById("completed");
+
+        all.addEventListener("click", function () {
+            all.setAttribute("class", "on");
+            if (active.classList.contains("on")) {
+                active.classList.remove("on");
+            } else if (completed.classList.contains("on")) {
+                completed.classList.remove("on");
+            }
+        })
+
+        active.addEventListener("click", function () {
+            active.setAttribute("class", "on");
+            if (all.classList.contains("on")) {
+                all.classList.remove("on");
+            } else if (completed.classList.contains("on")) {
+                completed.classList.remove("on");
+            }
+        })
+
+        completed.addEventListener("click", function () {
+            completed.setAttribute("class", "on");
+            if (all.classList.contains("on")) {
+                all.classList.remove("on");
+            } else if (active.classList.contains("on")) {
+                active.classList.remove("on");
+            }
+        })
     }
 }
 
@@ -115,34 +147,3 @@ document.querySelector("#user_task_text").addEventListener("keydown", function (
         UserTodoList.addTask()
     }
 });
-
-const all = document.getElementById("all");
-const active = document.getElementById("active");
-const completed = document.getElementById("completed");
-
-all.addEventListener("click", function () {
-    all.setAttribute("class", "on");
-    if (active.classList.contains("on")) {
-        active.classList.remove("on");
-    } else if (completed.classList.contains("on")) {
-        completed.classList.remove("on");
-    }
-})
-
-active.addEventListener("click", function () {
-    active.setAttribute("class", "on");
-    if (all.classList.contains("on")) {
-        all.classList.remove("on");
-    } else if (completed.classList.contains("on")) {
-        completed.classList.remove("on");
-    }
-})
-
-completed.addEventListener("click", function () {
-    completed.setAttribute("class", "on");
-    if (all.classList.contains("on")) {
-        all.classList.remove("on");
-    } else if (active.classList.contains("on")) {
-        active.classList.remove("on");
-    }
-})

@@ -91,6 +91,10 @@ class TodoTask {
 
             let tasksLeft = document.getElementById("items_left");
             tasksLeft.innerHTML = list_of_todos.length;
+
+            // document.getElementById('active').onclick = function () {
+            //     object_item.isDone.style.display = "none";
+            // };
         })
 
         localStorage.setItem("list_of_todos", JSON.stringify(list_of_todos));

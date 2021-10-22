@@ -22,7 +22,7 @@ class TodoTask {
         }
     }
 
-    done_undone(x) {
+    checkedOrUnchecked(x) {
         const selectedTodoIndex = list_of_todos.findIndex((item) => item.id == x);
         list_of_todos[selectedTodoIndex].isDone == false ? list_of_todos[selectedTodoIndex].isDone = true : list_of_todos[selectedTodoIndex].isDone = false;
         this.display();
@@ -46,20 +46,19 @@ class TodoTask {
             const checkbox = document.createElement("input");
             const span = document.createElement("span");
 
-            span.setAttribute("class", "todos_words");
-
             checkbox.type = "checkbox";
             checkbox.setAttribute("class", "checkboxes");
             checkbox.setAttribute("data-id", object_item.id);
 
+            span.setAttribute("class", "todos_words");
             span.innerHTML = object_item.todoText;
             span.setAttribute("data-id", object_item.id);
-            divElement.setAttribute("class", "todos_div");
 
             delete_button.setAttribute("data-id", object_item.id);
             delete_button.setAttribute("class", "close");
             delete_button.innerHTML = "X";
 
+            divElement.setAttribute("class", "todos_div");
             divElement.appendChild(checkbox);
             divElement.appendChild(span);
             divElement.appendChild(delete_button);
@@ -71,30 +70,25 @@ class TodoTask {
 
             span.addEventListener("click", function (e) {
                 const selectedId = e.target.getAttribute("data-id");
-                UserTodoList.done_undone(selectedId);
+                UserTodoList.checkedOrUnchecked(selectedId);
             })
 
             checkbox.addEventListener("click", function (e) {
                 const selectedId = e.target.getAttribute("data-id");
-                UserTodoList.done_undone(selectedId);
+                UserTodoList.checkedOrUnchecked(selectedId);
             })
 
             if (object_item.isDone) {
                 span.classList.add("checked");
                 checkbox.checked = true;
                 divElement.classList.add("completed");
+            } else if (!object_item.isDone) {
+                divElement.classList.add("active");
             }
 
             let ulAppend = document.querySelector(".todos");
 
             ulAppend.appendChild(divElement);
-
-            let tasksLeft = document.getElementById("items_left");
-            tasksLeft.innerHTML = list_of_todos.length;
-
-            // document.getElementById('active').onclick = function () {
-            //     object_item.isDone.style.display = "none";
-            // };
         })
 
         localStorage.setItem("list_of_todos", JSON.stringify(list_of_todos));
@@ -104,36 +98,7 @@ class TodoTask {
             tasksLeft.innerHTML = "0";
         }
 
-        const all = document.getElementById("all");
-        const active = document.getElementById("active");
-        const completed = document.getElementById("completed");
-
-        all.addEventListener("click", function () {
-            all.setAttribute("class", "on");
-            if (active.classList.contains("on")) {
-                active.classList.remove("on");
-            } else if (completed.classList.contains("on")) {
-                completed.classList.remove("on");
-            }
-        })
-
-        active.addEventListener("click", function () {
-            active.setAttribute("class", "on");
-            if (all.classList.contains("on")) {
-                all.classList.remove("on");
-            } else if (completed.classList.contains("on")) {
-                completed.classList.remove("on");
-            }
-        })
-
-        completed.addEventListener("click", function () {
-            completed.setAttribute("class", "on");
-            if (all.classList.contains("on")) {
-                all.classList.remove("on");
-            } else if (active.classList.contains("on")) {
-                active.classList.remove("on");
-            }
-        })
+        tasksLeft.innerHTML = list_of_todos.length - document.getElementsByClassName("completed").length;
     }
 }
 
@@ -151,3 +116,50 @@ document.querySelector("#user_task_text").addEventListener("keydown", function (
         UserTodoList.addTask()
     }
 });
+
+all.addEventListener("click", function () {
+    all.setAttribute("class", "on");
+    if (active.classList.contains("on")) {
+        active.classList.remove("on");
+    } else if (completed.classList.contains("on")) {
+        completed.classList.remove("on");
+    }
+})
+
+active.addEventListener("click", function () {
+    active.setAttribute("class", "on");
+    if (all.classList.contains("on")) {
+        all.classList.remove("on");
+    } else if (completed.classList.contains("on")) {
+        completed.classList.remove("on");
+    }
+})
+
+completed.addEventListener("click", function () {
+    completed.setAttribute("class", "on");
+    if (all.classList.contains("on")) {
+        all.classList.remove("on");
+    } else if (active.classList.contains("on")) {
+        active.classList.remove("on");
+    }
+})
+
+all.addEventListener("click", function () {
+    UserTodoList.display();
+})
+
+active.addEventListener("click", function () {
+    UserTodoList.display()
+    let classToHide = document.getElementsByClassName("completed");
+    for (let i = 0; i < classToHide.length; i++) {
+        classToHide[i].style.display = "none";
+    }
+})
+
+completed.addEventListener("click", function () {
+    UserTodoList.display()
+    let classToHide = document.getElementsByClassName("active");
+    for (let i = 0; i < classToHide.length; i++) {
+        classToHide[i].style.display = "none";
+    }
+})

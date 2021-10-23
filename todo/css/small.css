@@ -105,8 +105,6 @@ ul {
 
 .task_text_div>input {
     border: 1px solid rgb(29, 53, 130);
-    margin-right: 15px;
-    width: 100%;
 }
 
 .task_text_div>button {

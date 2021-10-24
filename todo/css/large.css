@@ -8,4 +8,9 @@
         max-width: 680px;
         margin: 0 auto;
     }
+
+    .todos_div:hover {
+      background-color: rgb(204, 50, 136);
+      transform: scale(1.01); 
+  }
 }

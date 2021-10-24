@@ -33,11 +33,6 @@ ul {
     transition: transform .2s
 }
 
-.todos_div:hover {
-    background-color: rgb(204, 50, 136);
-    transform: scale(1.01); 
-}
-
 .todos_words {
     margin: 10px;
 }

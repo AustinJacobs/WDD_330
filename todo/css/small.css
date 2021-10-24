@@ -29,6 +29,7 @@ ul {
     max-width: 100%;
     border: 1px solid rgb(29, 53, 130);
     padding: 5px;
+    border-radius: 5px;
 }
 
 .todos_words {
@@ -52,10 +53,11 @@ ul {
     grid-template-columns: 30% 1fr;
     grid-template-rows: 1fr;
     background-color: rgb(8, 26, 81);
-    margin: -20px 10px 0 10px;
+    margin: -17px 10px 0 10px;
     border: 1px solid rgb(29, 53, 130);
     color: white;
     padding: 5px;
+    border-radius: 5px;
 }
 
 .filter {
@@ -74,6 +76,7 @@ ul {
     color: white;
     border: none;
     font-size: 14px;
+    border-radius: 5px;
 }
 
 .left {
@@ -105,11 +108,13 @@ ul {
 
 .task_text_div>input {
     border: 1px solid rgb(29, 53, 130);
+    border-radius: 5px 0px 0px 5px;
 }
 
 .task_text_div>button {
     font-size: 30px;
     width: 50px;
+    border-radius: 0px 5px 5px 0px;
 }
 
 .add_button_div {

@@ -30,6 +30,12 @@ ul {
     border: 1px solid rgb(29, 53, 130);
     padding: 5px;
     border-radius: 5px;
+    transition: transform .2s
+}
+
+.todos_div:hover {
+    background-color: rgb(204, 50, 136);
+    transform: scale(1.01); 
 }
 
 .todos_words {
@@ -133,4 +139,5 @@ ul {
 
 .filter .on {
     border: 1px solid white;
+    background-color: rgb(204, 50, 136);
 }

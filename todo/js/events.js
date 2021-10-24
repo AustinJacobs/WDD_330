@@ -1,3 +1,5 @@
+// FILTER EVENT LISTENER's
+
 all.addEventListener("click", function () {
     all.setAttribute("class", "on");
     if (active.classList.contains("on")) {

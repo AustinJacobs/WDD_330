@@ -122,6 +122,8 @@ ul {
     align-self: center;
     border: 1px solid rgb(29, 53, 130);
     width: 100%;
+    color: white;
+    background-color: rgb(204, 50, 136);
 }
 
 .filter .on {

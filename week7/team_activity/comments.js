@@ -28,12 +28,12 @@ class CommentModel {
 
 function writeToLS(key, data) {
   // we can use JSON.stringify to convert our object to a string that can be stored in localStorage.
-  window.localStorage.setItem(key, JSON.stringify(data));
+  localStorage.setItem(key, JSON.stringify(data));
 }
 
 function readFromLS(key) {
   // the string we retrieve from localStorage needs to be converted back to an object with JSON.parse
-  return JSON.parse(window.localStorage.getItem(key));
+  return JSON.parse(localStorage.getItem(key));
 }
 
 // These methods create the HTML that is needed to output our list of comments to the screen.  Anything dealing with output to the browser is catagorized as view code.

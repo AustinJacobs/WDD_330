@@ -1,0 +1,50 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+h1 {
+    font-family: "Bungee";
+    color: #f7ec12;
+    text-align: center;
+}
+
+.big-hr {
+    background-color: #cb3827;
+    width: 260px;
+    height: 1px;
+    border: none;
+}
+
+ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 0 auto;
+    max-width: 350px;
+    justify-items: left;
+    padding: 0px;
+}
+
+ul > li {
+   color: #1d4388;
+   list-style: none;
+   padding-left: 30px;
+}
+
+#button-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 auto;
+    max-width: 380px;
+    justify-items: center;
+}
+
+button {
+    background-color: #f7ec12;
+    color: black;
+    width: 100px;
+    height: 30px;
+    border: none;
+    margin: 10px;
+    cursor: pointer;
+}

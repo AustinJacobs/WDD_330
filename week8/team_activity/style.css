@@ -1,50 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
 body {
-    background-color: black;
-    color: white;
+  font-family: Montserrat, sans-serif;
+}
+main {
+  display: flex;
+  flex-flow: column wrap;
 }
 
-h1 {
-    font-family: "Bungee";
-    color: #f7ec12;
-    text-align: center;
+.hidden {
+  display: none;
 }
 
-.big-hr {
-    background-color: #cb3827;
-    width: 260px;
-    height: 1px;
-    border: none;
+#shiplist td {
+  cursor: pointer;
 }
 
-ul {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin: 0 auto;
-    max-width: 350px;
-    justify-items: left;
-    padding: 0px;
+#detailsbox {
+  flex: 1 0 15em;
+  padding: 1em;
+  text-align: center;
+  border: 2px solid;
 }
 
-ul > li {
-   color: #1d4388;
-   list-style: none;
-   padding-left: 30px;
+#detailsbox dl {
+  border: 1px solid;
+  text-align: left;
 }
 
-#button-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    margin: 0 auto;
-    max-width: 380px;
-    justify-items: center;
+#shiplist {
+  /* display: flex; */
+  flex-flow: row wrap;
+  list-style-type: none;
 }
 
-button {
-    background-color: #f7ec12;
-    color: black;
-    width: 100px;
-    height: 30px;
-    border: none;
-    margin: 10px;
-    cursor: pointer;
+#shiplist thead {
+  background-color: lightgray;
+}
+
+#shiplist tr {
+  border: 1px solid;
+  padding: 0.5em;
+  height: 44px;
+}
+#shiplist tr:nth-child(even) {
+  background-color: azure;
+}
+#shiplist tr:hover {
+  background-color: bisque;
+  text-decoration: underline;
 }

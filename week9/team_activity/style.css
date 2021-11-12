@@ -49,3 +49,13 @@ kbd {
   letter-spacing: .1rem;
   color: #ffc600;
 }
+
+.drop {
+  transform: translateY(10px);
+  transform-origin: bottom;
+}
+
+.drop2 {
+  transform: translateY(10px);
+  transform-origin: bottom;
+}

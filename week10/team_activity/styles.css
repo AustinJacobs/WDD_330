@@ -1,0 +1,18 @@
+.quakeStyles {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.quakeStyles li {
+  margin: 0.5em 0;
+  background-color: lightcoral;
+  border: 1px solid black;
+}
+
+.quakeStyles div {
+  font-size: 1em;
+}
+
+.quakeStyles div:nth-child(odd) {
+  background-color: lightblue;
+}

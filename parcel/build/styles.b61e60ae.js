@@ -117,258 +117,79 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"js/config.js":[function(require,module,exports) {
-"use strict";
+})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
+var bundleURL = null;
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.config = void 0;
-var config = {
-  api_key: 'fd940caa3dfcfc92860ced4170dcd511',
-  api_base_url: 'https://api.themoviedb.org/3/',
-  image_base_url: 'https://image.tmdb.org/t/p/w200'
-};
-exports.config = config;
-},{}],"js/api.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getTrendingMovies = getTrendingMovies;
-exports.getTopMovies = getTopMovies;
-exports.getTrendingTv = getTrendingTv;
-
-var _config = require("./config.js");
-
-var BASE_URL = _config.config.api_base_url;
-var API_KEY = _config.config.api_key;
-
-function getTrendingMovies() {
-  var data, response, responseData;
-  return regeneratorRuntime.async(function getTrendingMovies$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          data = [];
-          _context.prev = 1;
-          _context.next = 4;
-          return regeneratorRuntime.awrap(fetch("".concat(BASE_URL, "trending/movie/week?api_key=").concat(API_KEY)));
-
-        case 4:
-          response = _context.sent;
-          _context.next = 7;
-          return regeneratorRuntime.awrap(response.json());
-
-        case 7:
-          responseData = _context.sent;
-          data = responseData.results;
-          _context.next = 13;
-          break;
-
-        case 11:
-          _context.prev = 11;
-          _context.t0 = _context["catch"](1);
-
-        case 13:
-          return _context.abrupt("return", data);
-
-        case 14:
-        case "end":
-          return _context.stop();
-      }
-    }
-  }, null, null, [[1, 11]]);
-}
-
-function getTopMovies() {
-  var data, response, responseData;
-  return regeneratorRuntime.async(function getTopMovies$(_context2) {
-    while (1) {
-      switch (_context2.prev = _context2.next) {
-        case 0:
-          data = [];
-          _context2.prev = 1;
-          _context2.next = 4;
-          return regeneratorRuntime.awrap(fetch("".concat(BASE_URL, "movie/top_rated?api_key=").concat(API_KEY)));
-
-        case 4:
-          response = _context2.sent;
-          _context2.next = 7;
-          return regeneratorRuntime.awrap(response.json());
-
-        case 7:
-          responseData = _context2.sent;
-          data = responseData.results;
-          _context2.next = 13;
-          break;
-
-        case 11:
-          _context2.prev = 11;
-          _context2.t0 = _context2["catch"](1);
-
-        case 13:
-          return _context2.abrupt("return", data);
-
-        case 14:
-        case "end":
-          return _context2.stop();
-      }
-    }
-  }, null, null, [[1, 11]]);
-}
-
-function getTrendingTv() {
-  var data, response, responseData;
-  return regeneratorRuntime.async(function getTrendingTv$(_context3) {
-    while (1) {
-      switch (_context3.prev = _context3.next) {
-        case 0:
-          data = [];
-          _context3.prev = 1;
-          _context3.next = 4;
-          return regeneratorRuntime.awrap(fetch("".concat(BASE_URL, "trending/tv/week?api_key=").concat(API_KEY)));
-
-        case 4:
-          response = _context3.sent;
-          _context3.next = 7;
-          return regeneratorRuntime.awrap(response.json());
-
-        case 7:
-          responseData = _context3.sent;
-          data = responseData.results;
-          _context3.next = 13;
-          break;
-
-        case 11:
-          _context3.prev = 11;
-          _context3.t0 = _context3["catch"](1);
-
-        case 13:
-          return _context3.abrupt("return", data);
-
-        case 14:
-        case "end":
-          return _context3.stop();
-      }
-    }
-  }, null, null, [[1, 11]]);
-}
-},{"./config.js":"js/config.js"}],"js/home.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.renderTrendingMovies = renderTrendingMovies;
-exports.renderTopMovies = renderTopMovies;
-exports.renderTrendingTv = renderTrendingTv;
-
-var _api = require("./api.js");
-
-var _config = require("./config.js");
-
-var trendingMovieDiv = document.getElementById("trending-movies");
-var topMovieDiv = document.getElementById("top-movies");
-var trendingTvDiv = document.getElementById("trending-tv");
-
-function renderTrendingMovies() {
-  var movies;
-  return regeneratorRuntime.async(function renderTrendingMovies$(_context) {
-    while (1) {
-      switch (_context.prev = _context.next) {
-        case 0:
-          _context.next = 2;
-          return regeneratorRuntime.awrap((0, _api.getTrendingMovies)());
-
-        case 2:
-          movies = _context.sent;
-          console.log(movies);
-          trendingMovieDiv.innerHTML = movies.map(function (movie) {
-            return renderSingleMovie(movie);
-          }).join("");
-
-        case 5:
-        case "end":
-          return _context.stop();
-      }
-    }
-  });
-}
-
-function renderTopMovies() {
-  var movies;
-  return regeneratorRuntime.async(function renderTopMovies$(_context2) {
-    while (1) {
-      switch (_context2.prev = _context2.next) {
-        case 0:
-          _context2.next = 2;
-          return regeneratorRuntime.awrap((0, _api.getTopMovies)());
-
-        case 2:
-          movies = _context2.sent;
-          console.log(movies);
-          topMovieDiv.innerHTML = movies.map(function (movie) {
-            return renderSingleMovie(movie);
-          }).join("");
-
-        case 5:
-        case "end":
-          return _context2.stop();
-      }
-    }
-  });
-}
-
-function renderTrendingTv() {
-  var shows;
-  return regeneratorRuntime.async(function renderTrendingTv$(_context3) {
-    while (1) {
-      switch (_context3.prev = _context3.next) {
-        case 0:
-          _context3.next = 2;
-          return regeneratorRuntime.awrap((0, _api.getTrendingTv)());
-
-        case 2:
-          shows = _context3.sent;
-          console.log(shows);
-          trendingTvDiv.innerHTML = shows.map(function (tv) {
-            return renderSingleShow(tv);
-          }).join("");
-
-        case 5:
-        case "end":
-          return _context3.stop();
-      }
-    }
-  });
-}
-
-function renderSingleMovie(movie) {
-  if (movie.poster_path != null) {
-    return "\n            <div>\n                <img src=\"".concat(_config.config.image_base_url + movie.poster_path, "\" class=\"featured\" alt=").concat(movie.title, ">\n            </div>\n            ");
+function getBundleURLCached() {
+  if (!bundleURL) {
+    bundleURL = getBundleURL();
   }
+
+  return bundleURL;
 }
 
-function renderSingleShow(tv) {
-  if (tv.poster_path != null) {
-    return "\n            <div>\n                <img src=\"".concat(_config.config.image_base_url + tv.poster_path, "\" class=\"featured\" alt=").concat(tv.name, ">\n            </div>\n            ");
+function getBundleURL() {
+  // Attempt to find the URL of the current script and use that as the base URL
+  try {
+    throw new Error();
+  } catch (err) {
+    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+
+    if (matches) {
+      return getBaseURL(matches[0]);
+    }
   }
-}
-},{"./api.js":"js/api.js","./config.js":"js/config.js"}],"js/app.js":[function(require,module,exports) {
-"use strict";
 
-var _home = require("./home.js");
-
-function App() {
-  (0, _home.renderTrendingMovies)();
-  (0, _home.renderTopMovies)();
-  (0, _home.renderTrendingTv)();
+  return '/';
 }
 
-App();
-},{"./home.js":"js/home.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+function getBaseURL(url) {
+  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
+var bundle = require('./bundle-url');
+
+function updateLink(link) {
+  var newLink = link.cloneNode();
+
+  newLink.onload = function () {
+    link.remove();
+  };
+
+  newLink.href = link.href.split('?')[0] + '?' + Date.now();
+  link.parentNode.insertBefore(newLink, link.nextSibling);
+}
+
+var cssTimeout = null;
+
+function reloadCSS() {
+  if (cssTimeout) {
+    return;
+  }
+
+  cssTimeout = setTimeout(function () {
+    var links = document.querySelectorAll('link[rel="stylesheet"]');
+
+    for (var i = 0; i < links.length; i++) {
+      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
+        updateLink(links[i]);
+      }
+    }
+
+    cssTimeout = null;
+  }, 50);
+}
+
+module.exports = reloadCSS;
+},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"css/styles.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -396,7 +217,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54076" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49551" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -572,5 +393,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/app.js"], null)
-//# sourceMappingURL=/app.c3f9f951.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
+//# sourceMappingURL=/styles.b61e60ae.js.map

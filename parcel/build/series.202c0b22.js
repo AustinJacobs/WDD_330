@@ -117,79 +117,128 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   }
 
   return newRequire;
-})({"../node_modules/parcel-bundler/src/builtins/bundle-url.js":[function(require,module,exports) {
-var bundleURL = null;
+})({"js/config.js":[function(require,module,exports) {
+"use strict";
 
-function getBundleURLCached() {
-  if (!bundleURL) {
-    bundleURL = getBundleURL();
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.config = void 0;
+var config = {
+  api_key: 'fd940caa3dfcfc92860ced4170dcd511',
+  api_base_url: 'https://api.themoviedb.org/3/',
+  image_base_url: 'https://image.tmdb.org/t/p/w200'
+};
+exports.config = config;
+},{}],"js/series.js":[function(require,module,exports) {
+"use strict";
+
+var _config = require("./config.js");
+
+var BASE_URL = _config.config.api_base_url;
+var API_KEY = _config.config.api_key;
+var searchedSeriesDiv = document.getElementById("searched-series");
+var seriesDiv = document.getElementById("all-series");
+var searchButton = document.getElementById("search-button-series");
+var searchedTitles = document.getElementById("searched-titles-tv");
+searchButton.addEventListener("click", function () {
+  var userQuery = document.getElementById("title_input_tv").value;
+  var searchURL = "".concat(BASE_URL, "search/tv?api_key=").concat(API_KEY, "&language=en-US&query=").concat(userQuery, "&include_adult=false");
+
+  function fetchSearchedSeries() {
+    var data, response, responseData;
+    return regeneratorRuntime.async(function fetchSearchedSeries$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            data = [];
+            _context.prev = 1;
+            _context.next = 4;
+            return regeneratorRuntime.awrap(fetch(searchURL));
+
+          case 4:
+            response = _context.sent;
+            _context.next = 7;
+            return regeneratorRuntime.awrap(response.json());
+
+          case 7:
+            responseData = _context.sent;
+            data = responseData.results;
+            console.log(data);
+            _context.next = 14;
+            break;
+
+          case 12:
+            _context.prev = 12;
+            _context.t0 = _context["catch"](1);
+
+          case 14:
+            searchedTitles.style.display = "block";
+            searchedSeriesDiv.innerHTML = data.map(function (tv) {
+              return renderSingleShow(tv);
+            }).join("");
+
+          case 16:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, null, null, [[1, 12]]);
   }
 
-  return bundleURL;
-}
+  fetchSearchedSeries();
+});
 
-function getBundleURL() {
-  // Attempt to find the URL of the current script and use that as the base URL
-  try {
-    throw new Error();
-  } catch (err) {
-    var matches = ('' + err.stack).match(/(https?|file|ftp|chrome-extension|moz-extension):\/\/[^)\n]+/g);
+function fetchSeries() {
+  var page, allSeriesUrl, data, response, responseData;
+  return regeneratorRuntime.async(function fetchSeries$(_context2) {
+    while (1) {
+      switch (_context2.prev = _context2.next) {
+        case 0:
+          page = 1;
+          allSeriesUrl = "".concat(BASE_URL, "tv/popular?api_key=").concat(API_KEY, "&language=en-US&page=").concat(page);
+          data = [];
+          _context2.prev = 3;
+          _context2.next = 6;
+          return regeneratorRuntime.awrap(fetch(allSeriesUrl));
 
-    if (matches) {
-      return getBaseURL(matches[0]);
-    }
-  }
+        case 6:
+          response = _context2.sent;
+          _context2.next = 9;
+          return regeneratorRuntime.awrap(response.json());
 
-  return '/';
-}
+        case 9:
+          responseData = _context2.sent;
+          data = responseData;
+          console.log(data);
+          _context2.next = 16;
+          break;
 
-function getBaseURL(url) {
-  return ('' + url).replace(/^((?:https?|file|ftp|chrome-extension|moz-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
-}
+        case 14:
+          _context2.prev = 14;
+          _context2.t0 = _context2["catch"](3);
 
-exports.getBundleURL = getBundleURLCached;
-exports.getBaseURL = getBaseURL;
-},{}],"../node_modules/parcel-bundler/src/builtins/css-loader.js":[function(require,module,exports) {
-var bundle = require('./bundle-url');
+        case 16:
+          seriesDiv.innerHTML = data.results.map(function (tv) {
+            return renderSingleShow(tv);
+          }).join("");
 
-function updateLink(link) {
-  var newLink = link.cloneNode();
-
-  newLink.onload = function () {
-    link.remove();
-  };
-
-  newLink.href = link.href.split('?')[0] + '?' + Date.now();
-  link.parentNode.insertBefore(newLink, link.nextSibling);
-}
-
-var cssTimeout = null;
-
-function reloadCSS() {
-  if (cssTimeout) {
-    return;
-  }
-
-  cssTimeout = setTimeout(function () {
-    var links = document.querySelectorAll('link[rel="stylesheet"]');
-
-    for (var i = 0; i < links.length; i++) {
-      if (bundle.getBaseURL(links[i].href) === bundle.getBundleURL()) {
-        updateLink(links[i]);
+        case 17:
+        case "end":
+          return _context2.stop();
       }
     }
-
-    cssTimeout = null;
-  }, 50);
+  }, null, null, [[3, 14]]);
 }
 
-module.exports = reloadCSS;
-},{"./bundle-url":"../node_modules/parcel-bundler/src/builtins/bundle-url.js"}],"css/styles.css":[function(require,module,exports) {
-var reloadCSS = require('_css_loader');
+fetchSeries();
 
-module.hot.dispose(reloadCSS);
-module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+function renderSingleShow(tv) {
+  if (tv.poster_path != null) {
+    return "\n            <div>\n                <img src=\"".concat(_config.config.image_base_url + tv.poster_path, "\" class=\"featured\" alt=").concat(tv.name, ">\n                <p class=\"title-centered\">").concat(tv.name, "</p>\n            </div>\n            ");
+  }
+}
+},{"./config.js":"js/config.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -217,7 +266,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54076" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49551" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -393,5 +442,5 @@ function hmrAcceptRun(bundle, id) {
     return true;
   }
 }
-},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js"], null)
-//# sourceMappingURL=/styles.b61e60ae.js.map
+},{}]},{},["../node_modules/parcel-bundler/src/builtins/hmr-runtime.js","js/series.js"], null)
+//# sourceMappingURL=/series.202c0b22.js.map

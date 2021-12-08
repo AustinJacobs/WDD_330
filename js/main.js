@@ -57,7 +57,7 @@ const links = [
 
     {
         label: "Final Project",
-        url: "parcel/index.html"
+        url: "parcel/src/index.html"
     }
 ];
 

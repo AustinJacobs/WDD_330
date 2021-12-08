@@ -13,15 +13,15 @@ export async function getTrendingMovies() {
         const responseData = await response.json()
         data = responseData.results
     } catch (error) {
-
+        
     }
     return data
 }
 
-export async function getTopMovies(page = 1) {
+export async function getTopMovies() {
     let data = []
     try {
-        const response = await fetch(`${BASE_URL}movie/top_rated?api_key=${API_KEY}&page=${page}`)
+        const response = await fetch(`${BASE_URL}movie/top_rated?api_key=${API_KEY}`)
         const responseData = await response.json()
         data = responseData.results
     } catch (error) {

@@ -23,7 +23,7 @@ searchButton.addEventListener("click", function () {
             data = responseData.results
             console.log(data);
         } catch (error) {
-
+            
         }
         searchedTitles.style.display = "block";
         searchedMoviesDiv.innerHTML = data.map(movie => renderSingleMovie(movie)).join("")

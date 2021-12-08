@@ -53,6 +53,11 @@ const links = [
     {
         label: "Week 11",
         url: "week11//client/week11.html"
+    },
+
+    {
+        label: "Final Project",
+        url: "final/index.html"
     }
 ];
 

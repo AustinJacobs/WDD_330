@@ -166,6 +166,7 @@ footer {
 
 div.scrollmenu {
   overflow: auto;
+  overflow-y: none;
   white-space: nowrap;
 }
 
@@ -223,10 +224,6 @@ div.scrollmenu a:hover {
   cursor: pointer;
   padding: 15px;
   border-radius: 10px;
-}
-
-.back-top:hover {
-  background-color: #555;
 }
 
 #page-buttons {

@@ -183,45 +183,40 @@ function getTrendingMovies() {
 }
 
 function getTopMovies() {
-  var page,
-      data,
-      response,
-      responseData,
-      _args2 = arguments;
+  var data, response, responseData;
   return regeneratorRuntime.async(function getTopMovies$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          page = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : 1;
           data = [];
-          _context2.prev = 2;
-          _context2.next = 5;
-          return regeneratorRuntime.awrap(fetch("".concat(BASE_URL, "movie/top_rated?api_key=").concat(API_KEY, "&page=").concat(page)));
+          _context2.prev = 1;
+          _context2.next = 4;
+          return regeneratorRuntime.awrap(fetch("".concat(BASE_URL, "movie/top_rated?api_key=").concat(API_KEY)));
 
-        case 5:
+        case 4:
           response = _context2.sent;
-          _context2.next = 8;
+          _context2.next = 7;
           return regeneratorRuntime.awrap(response.json());
 
-        case 8:
+        case 7:
           responseData = _context2.sent;
           data = responseData.results;
-          _context2.next = 14;
+          _context2.next = 13;
           break;
 
-        case 12:
-          _context2.prev = 12;
-          _context2.t0 = _context2["catch"](2);
+        case 11:
+          _context2.prev = 11;
+          _context2.t0 = _context2["catch"](1);
 
-        case 14:
+        case 13:
           return _context2.abrupt("return", data);
 
-        case 15:
+        case 14:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[2, 12]]);
+  }, null, null, [[1, 11]]);
 }
 
 function getTrendingTv() {
@@ -401,7 +396,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62599" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54076" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

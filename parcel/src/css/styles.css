@@ -172,7 +172,7 @@ div.scrollmenu {
 div.scrollmenu-genres {
   overflow: auto;
   white-space: nowrap;
-  margin-top:30px;
+  margin-top: 30px;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -202,4 +202,29 @@ div.scrollmenu div {
 
 div.scrollmenu a:hover {
   background-color: rgb(133, 133, 133);
+}
+
+.slide {
+  text-align: left;
+  margin-left: 10px;
+}
+
+.back-top {
+  display: none;
+  position: fixed;
+  bottom: 70px;
+  right: 10px;
+  z-index: 99;
+  font-size: 18px;
+  border: none;
+  outline: none;
+  background-color: #ef233c;
+  color: white;
+  cursor: pointer;
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.back-top:hover {
+  background-color: #555;
 }

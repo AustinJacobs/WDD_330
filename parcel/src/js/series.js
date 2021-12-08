@@ -1,6 +1,6 @@
 
 import {
-    config
+    config,
 } from "./config.js";
 
 const BASE_URL = config.api_base_url
@@ -59,3 +59,27 @@ function renderSingleShow(tv) {
         )
     }
 }
+
+function topScroll() {
+    let backToTop = document.querySelector(".back-top");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+    
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTop.style.display = "block";
+        } else {
+            backToTop.style.display = "none";
+        }
+    }
+    
+    backToTop.addEventListener('click', function () {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+}
+
+topScroll()

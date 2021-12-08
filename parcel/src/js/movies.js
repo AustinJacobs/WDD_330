@@ -9,6 +9,29 @@ const searchedMoviesDiv = document.getElementById("searched-movies");
 const moviesDiv = document.getElementById("all-movies");
 let searchButton = document.getElementById("search-button-movies");
 const searchedTitles = document.getElementById("searched-titles");
+let page = 1;
+
+function topScroll() {
+    let backToTop = document.querySelector(".back-top");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function () {
+        scrollFunction()
+    };
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            backToTop.style.display = "block";
+        } else {
+            backToTop.style.display = "none";
+        }
+    }
+
+    backToTop.addEventListener('click', function toTop() {
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+    });
+}
 
 searchButton.addEventListener("click", function () {
     let userQuery = document.getElementById("title_input").value;
@@ -31,8 +54,7 @@ searchButton.addEventListener("click", function () {
     fetchSearchedMovies();
 })
 
-async function fetchMovies() {
-    let page = 1;
+async function fetchMovies(page = 1) {
     let allMoviesUrl = `${BASE_URL}movie/popular?api_key=${API_KEY}&language=en-US&page=${page}`;
     let data = []
     try {
@@ -44,7 +66,28 @@ async function fetchMovies() {
 
     }
     moviesDiv.innerHTML = data.results.map(movie => renderSingleMovie(movie)).join("")
+
+    const lessButton = document.querySelector(".prev-content");
+    lessButton.style.display = "none";
+    if (data.page > 1) {
+        lessButton.style.display = "block";
+        lessButton.addEventListener("click", function () {
+            page--;
+            fetchMovies(page = page)
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        })
+    }
+
+    const moreButton = document.querySelector(".next-content");
+    moreButton.addEventListener("click", function () {
+        page++;
+        fetchMovies(page = page)
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    })
 }
+
 
 function renderSingleMovie(movie) {
     if (movie.poster_path != null) {
@@ -58,44 +101,20 @@ function renderSingleMovie(movie) {
         )
     }
 }
-
+topScroll()
 fetchMovies()
 
-// Why does this work when I use an ID but not when I use the class that is added to the created div elements?
-let targetDiv = document.querySelector(".media-div");
+// // Why does this work when I use an ID but not when I use the class that is added to the created div elements?
+// let targetDiv = document.querySelector(".media-div");
 
-targetDiv.addEventListener("click", function (e) {
-    let x = e.target.getAttribute("id");
-    console.log(x);
-})
+// targetDiv.addEventListener("click", function (e) {
+//     let x = e.target.getAttribute("id");
+//     console.log(x);
+// })
 
-document.querySelectorAll('.media-div').forEach(item => {
-    item.addEventListener('click', e => {
-        let x = e.target.getAttribute("id");
-        console.log(x);
-    })
-})
-
-function topScroll() {
-    let backToTop = document.querySelector(".back-top");
-
-    // When the user scrolls down 20px from the top of the document, show the button
-    window.onscroll = function () {
-        scrollFunction()
-    };
-    
-    function scrollFunction() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            backToTop.style.display = "block";
-        } else {
-            backToTop.style.display = "none";
-        }
-    }
-    
-    backToTop.addEventListener('click', function () {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-    });
-}
-
-topScroll()
+// document.querySelectorAll('.media-div').forEach(item => {
+//     item.addEventListener('click', e => {
+//         let x = e.target.getAttribute("id");
+//         console.log(x);
+//     })
+// })

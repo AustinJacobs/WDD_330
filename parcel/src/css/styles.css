@@ -222,9 +222,38 @@ div.scrollmenu a:hover {
   color: white;
   cursor: pointer;
   padding: 15px;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
 .back-top:hover {
   background-color: #555;
+}
+
+#page-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  margin-bottom: 10px;
+}
+
+.prev-content {
+  grid-column: 1/2;
+  background-color: transparent;
+  border: none;
+  color: #ef233c;
+  padding: 10px;
+  font-size: 40px;
+}
+
+.next-content {
+  grid-column: 2/3;
+  background-color: transparent;
+  border: none;
+  color: #ef233c;
+  padding: 10px;
+  font-size: 40px;
+}
+
+.media-div {
+  margin-bottom: 20px;
 }

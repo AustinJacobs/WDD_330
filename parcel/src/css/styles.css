@@ -166,7 +166,7 @@ footer {
 
 div.scrollmenu {
   overflow: auto;
-  overflow-y: none;
+  overflow-y: hidden;
   white-space: nowrap;
 }
 

@@ -118,3 +118,13 @@ fetchMovies()
 //         console.log(x);
 //     })
 // })
+
+document.addEventListener('DOMContentLoaded', function () {
+    console.log('DOM fully loaded and parsed');
+    document.querySelectorAll('.media-div').forEach(item => {
+        item.addEventListener('click', e => {
+            let x = e.target.getAttribute("id");
+            console.log(x);
+        })
+    })
+});

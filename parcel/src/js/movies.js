@@ -49,6 +49,13 @@ searchButton.addEventListener("click", function () {
 
         searchedTitles.style.display = "block";
         searchedMoviesDiv.innerHTML = data.map(movie => renderSingleMovie(movie)).join("")
+
+        document.querySelectorAll('.media-div').forEach(item => {
+            item.addEventListener('click', e => {
+                let x = e.currentTarget.getAttribute("id");
+                console.log(x);
+            })
+        })
     }
     fetchSearchedMovies();
 })
@@ -66,6 +73,13 @@ async function fetchMovies(page = 1) {
     }
 
     moviesDiv.innerHTML = data.results.map(movie => renderSingleMovie(movie)).join("")
+
+    document.querySelectorAll('.media-div').forEach(item => {
+        item.addEventListener('click', e => {
+            let x = e.currentTarget.getAttribute("id");
+            console.log(x);
+        })
+    })
 
     const lessButton = document.querySelector(".prev-content");
     lessButton.style.display = "none";
@@ -103,13 +117,3 @@ function renderSingleMovie(movie) {
 }
 topScroll()
 fetchMovies()
-
-document.addEventListener('DOMContentLoaded', function () {
-    console.log('DOM fully loaded and parsed');
-    document.querySelectorAll('.media-div').forEach(item => {
-        item.addEventListener('click', e => {
-            let x = e.target.getAttribute("id");
-            console.log(x);
-        })
-    })
-});

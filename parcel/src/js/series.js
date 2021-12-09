@@ -1,4 +1,3 @@
-
 import {
     config,
 } from "./config.js";
@@ -18,7 +17,7 @@ function topScroll() {
     window.onscroll = function () {
         scrollFunction()
     };
-    
+
     function scrollFunction() {
         if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
             backToTop.style.display = "block";
@@ -26,7 +25,7 @@ function topScroll() {
             backToTop.style.display = "none";
         }
     }
-    
+
     backToTop.addEventListener('click', function () {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
@@ -50,6 +49,13 @@ searchButton.addEventListener("click", function () {
         }
         searchedTitles.style.display = "block";
         searchedSeriesDiv.innerHTML = data.map(tv => renderSingleShow(tv)).join("")
+
+        document.querySelectorAll('.media-div').forEach(item => {
+            item.addEventListener('click', e => {
+                let x = e.currentTarget.getAttribute("id");
+                console.log(x);
+            })
+        })
     }
     fetchSearchedSeries();
 })
@@ -66,6 +72,14 @@ async function fetchSeries() {
 
     }
     seriesDiv.innerHTML = data.results.map(tv => renderSingleShow(tv)).join("")
+
+    document.querySelectorAll('.media-div').forEach(item => {
+        item.addEventListener('click', e => {
+            let x = e.currentTarget.getAttribute("id");
+            console.log(x);
+        })
+    })
+
     const lessButton = document.querySelector(".prev-content");
     lessButton.style.display = "none";
     if (data.page > 1) {
@@ -91,7 +105,7 @@ function renderSingleShow(tv) {
     if (tv.poster_path != null) {
         return (
             `
-            <div class="media-div">
+            <div id="${tv.id}" class="media-div">
                 <img src="${config.image_base_url + tv.poster_path}" class="featured" alt=${tv.name}>
                 <p class="title-centered">${tv.name}</p>
             </div>

@@ -2,7 +2,6 @@ import {
     config
 } from "./config.js";
 
-
 const BASE_URL = config.api_base_url
 const API_KEY = config.api_key
 const searchedMoviesDiv = document.getElementById("searched-movies");
@@ -14,7 +13,6 @@ let page = 1;
 function topScroll() {
     let backToTop = document.querySelector(".back-top");
 
-    // When the user scrolls down 20px from the top of the document, show the button
     window.onscroll = function () {
         scrollFunction()
     };
@@ -28,8 +26,8 @@ function topScroll() {
     }
 
     backToTop.addEventListener('click', function toTop() {
-        document.body.scrollTop = 0; // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
     });
 }
 
@@ -46,8 +44,9 @@ searchButton.addEventListener("click", function () {
             data = responseData.results
             console.log(data);
         } catch (error) {
-
+            console.log(error)
         }
+
         searchedTitles.style.display = "block";
         searchedMoviesDiv.innerHTML = data.map(movie => renderSingleMovie(movie)).join("")
     }
@@ -63,8 +62,9 @@ async function fetchMovies(page = 1) {
         data = responseData
         console.log(data);
     } catch (error) {
-
+        console.log(error)
     }
+
     moviesDiv.innerHTML = data.results.map(movie => renderSingleMovie(movie)).join("")
 
     const lessButton = document.querySelector(".prev-content");
@@ -103,21 +103,6 @@ function renderSingleMovie(movie) {
 }
 topScroll()
 fetchMovies()
-
-// // Why does this work when I use an ID but not when I use the class that is added to the created div elements?
-// let targetDiv = document.querySelector(".media-div");
-
-// targetDiv.addEventListener("click", function (e) {
-//     let x = e.target.getAttribute("id");
-//     console.log(x);
-// })
-
-// document.querySelectorAll('.media-div').forEach(item => {
-//     item.addEventListener('click', e => {
-//         let x = e.target.getAttribute("id");
-//         console.log(x);
-//     })
-// })
 
 document.addEventListener('DOMContentLoaded', function () {
     console.log('DOM fully loaded and parsed');

@@ -141,6 +141,29 @@ var searchedMoviesDiv = document.getElementById("searched-movies");
 var moviesDiv = document.getElementById("all-movies");
 var searchButton = document.getElementById("search-button-movies");
 var searchedTitles = document.getElementById("searched-titles");
+var page = 1;
+
+function topScroll() {
+  var backToTop = document.querySelector(".back-top");
+
+  window.onscroll = function () {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      backToTop.style.display = "block";
+    } else {
+      backToTop.style.display = "none";
+    }
+  }
+
+  backToTop.addEventListener('click', function toTop() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  });
+}
+
 searchButton.addEventListener("click", function () {
   var userQuery = document.getElementById("title_input").value;
   var searchURL = "".concat(BASE_URL, "search/movie?api_key=").concat(API_KEY, "&language=en-US&query=").concat(userQuery, "&include_adult=false");
@@ -165,20 +188,27 @@ searchButton.addEventListener("click", function () {
             responseData = _context.sent;
             data = responseData.results;
             console.log(data);
-            _context.next = 14;
+            _context.next = 15;
             break;
 
           case 12:
             _context.prev = 12;
             _context.t0 = _context["catch"](1);
+            console.log(_context.t0);
 
-          case 14:
+          case 15:
             searchedTitles.style.display = "block";
             searchedMoviesDiv.innerHTML = data.map(function (movie) {
               return renderSingleMovie(movie);
             }).join("");
+            document.querySelectorAll('.media-div').forEach(function (item) {
+              item.addEventListener('click', function (e) {
+                var x = e.currentTarget.getAttribute("id");
+                console.log(x);
+              });
+            });
 
-          case 16:
+          case 18:
           case "end":
             return _context.stop();
         }
@@ -190,12 +220,19 @@ searchButton.addEventListener("click", function () {
 });
 
 function fetchMovies() {
-  var page, allMoviesUrl, data, response, responseData;
+  var page,
+      allMoviesUrl,
+      data,
+      response,
+      responseData,
+      lessButton,
+      moreButton,
+      _args2 = arguments;
   return regeneratorRuntime.async(function fetchMovies$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          page = 1;
+          page = _args2.length > 0 && _args2[0] !== undefined ? _args2[0] : 1;
           allMoviesUrl = "".concat(BASE_URL, "movie/popular?api_key=").concat(API_KEY, "&language=en-US&page=").concat(page);
           data = [];
           _context2.prev = 3;
@@ -211,19 +248,46 @@ function fetchMovies() {
           responseData = _context2.sent;
           data = responseData;
           console.log(data);
-          _context2.next = 16;
+          _context2.next = 17;
           break;
 
         case 14:
           _context2.prev = 14;
           _context2.t0 = _context2["catch"](3);
+          console.log(_context2.t0);
 
-        case 16:
+        case 17:
           moviesDiv.innerHTML = data.results.map(function (movie) {
             return renderSingleMovie(movie);
           }).join("");
+          document.querySelectorAll('.media-div').forEach(function (item) {
+            item.addEventListener('click', function (e) {
+              var x = e.currentTarget.getAttribute("id");
+              console.log(x);
+            });
+          });
+          lessButton = document.querySelector(".prev-content");
+          lessButton.style.display = "none";
 
-        case 17:
+          if (data.page > 1) {
+            lessButton.style.display = "block";
+            lessButton.addEventListener("click", function () {
+              page--;
+              fetchMovies(page = page);
+              document.body.scrollTop = 0;
+              document.documentElement.scrollTop = 0;
+            });
+          }
+
+          moreButton = document.querySelector(".next-content");
+          moreButton.addEventListener("click", function () {
+            page++;
+            fetchMovies(page = page);
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+          });
+
+        case 24:
         case "end":
           return _context2.stop();
       }
@@ -237,18 +301,8 @@ function renderSingleMovie(movie) {
   }
 }
 
-fetchMovies(); // Why does this work when I use an ID but not when I use the class that is added to the created div elements?
-// let targetDiv = document.querySelector(".media-div");
-// targetDiv.addEventListener("click", function (e) {
-//     let x = e.target.getAttribute("id");
-//     console.log(x);
-// })
-// document.querySelectorAll('.media-div').forEach(item => {
-//     item.addEventListener('click', e => {
-//         let x = e.target.getAttribute("id");
-//         console.log(x);
-//     })
-// })
+topScroll();
+fetchMovies();
 },{"./config.js":"js/config.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -277,7 +331,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49551" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65123" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

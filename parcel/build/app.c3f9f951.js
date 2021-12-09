@@ -288,8 +288,14 @@ function renderTrendingMovies() {
           trendingMovieDiv.innerHTML = movies.map(function (movie) {
             return renderSingleMovie(movie);
           }).join("");
+          document.querySelectorAll('.media-div').forEach(function (item) {
+            item.addEventListener('click', function (e) {
+              var x = e.currentTarget.getAttribute("id");
+              console.log(x);
+            });
+          });
 
-        case 5:
+        case 6:
         case "end":
           return _context.stop();
       }
@@ -312,8 +318,14 @@ function renderTopMovies() {
           topMovieDiv.innerHTML = movies.map(function (movie) {
             return renderSingleMovie(movie);
           }).join("");
+          document.querySelectorAll('.media-div').forEach(function (item) {
+            item.addEventListener('click', function (e) {
+              var x = e.currentTarget.getAttribute("id");
+              console.log(x);
+            });
+          });
 
-        case 5:
+        case 6:
         case "end":
           return _context2.stop();
       }
@@ -336,8 +348,14 @@ function renderTrendingTv() {
           trendingTvDiv.innerHTML = shows.map(function (tv) {
             return renderSingleShow(tv);
           }).join("");
+          document.querySelectorAll('.media-div').forEach(function (item) {
+            item.addEventListener('click', function (e) {
+              var x = e.currentTarget.getAttribute("id");
+              console.log(x);
+            });
+          });
 
-        case 5:
+        case 6:
         case "end":
           return _context3.stop();
       }
@@ -347,13 +365,13 @@ function renderTrendingTv() {
 
 function renderSingleMovie(movie) {
   if (movie.poster_path != null) {
-    return "\n            <div>\n                <img src=\"".concat(_config.config.image_base_url + movie.poster_path, "\" class=\"featured\" alt=").concat(movie.title, ">\n            </div>\n            ");
+    return "\n            <div id=\"".concat(movie.id, "\" class=\"media-div\">\n                <img src=\"").concat(_config.config.image_base_url + movie.poster_path, "\" class=\"featured\" alt=").concat(movie.title, ">\n            </div>\n            ");
   }
 }
 
 function renderSingleShow(tv) {
   if (tv.poster_path != null) {
-    return "\n            <div>\n                <img src=\"".concat(_config.config.image_base_url + tv.poster_path, "\" class=\"featured\" alt=").concat(tv.name, ">\n            </div>\n            ");
+    return "\n            <div id=\"".concat(tv.id, "\" class=\"media-div\">\n                <img src=\"").concat(_config.config.image_base_url + tv.poster_path, "\" class=\"featured\" alt=").concat(tv.name, ">\n            </div>\n            ");
   }
 }
 },{"./api.js":"js/api.js","./config.js":"js/config.js"}],"js/app.js":[function(require,module,exports) {
@@ -396,7 +414,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49551" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65123" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

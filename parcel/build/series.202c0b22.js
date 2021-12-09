@@ -141,6 +141,30 @@ var searchedSeriesDiv = document.getElementById("searched-series");
 var seriesDiv = document.getElementById("all-series");
 var searchButton = document.getElementById("search-button-series");
 var searchedTitles = document.getElementById("searched-titles-tv");
+var page = 1;
+
+function topScroll() {
+  var backToTop = document.querySelector(".back-top"); // When the user scrolls down 20px from the top of the document, show the button
+
+  window.onscroll = function () {
+    scrollFunction();
+  };
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+      backToTop.style.display = "block";
+    } else {
+      backToTop.style.display = "none";
+    }
+  }
+
+  backToTop.addEventListener('click', function () {
+    document.body.scrollTop = 0; // For Safari
+
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+  });
+}
+
 searchButton.addEventListener("click", function () {
   var userQuery = document.getElementById("title_input_tv").value;
   var searchURL = "".concat(BASE_URL, "search/tv?api_key=").concat(API_KEY, "&language=en-US&query=").concat(userQuery, "&include_adult=false");
@@ -177,8 +201,14 @@ searchButton.addEventListener("click", function () {
             searchedSeriesDiv.innerHTML = data.map(function (tv) {
               return renderSingleShow(tv);
             }).join("");
+            document.querySelectorAll('.media-div').forEach(function (item) {
+              item.addEventListener('click', function (e) {
+                var x = e.currentTarget.getAttribute("id");
+                console.log(x);
+              });
+            });
 
-          case 16:
+          case 17:
           case "end":
             return _context.stop();
         }
@@ -190,54 +220,80 @@ searchButton.addEventListener("click", function () {
 });
 
 function fetchSeries() {
-  var page, allSeriesUrl, data, response, responseData;
+  var allSeriesUrl, data, response, responseData, lessButton, moreButton;
   return regeneratorRuntime.async(function fetchSeries$(_context2) {
     while (1) {
       switch (_context2.prev = _context2.next) {
         case 0:
-          page = 1;
           allSeriesUrl = "".concat(BASE_URL, "tv/popular?api_key=").concat(API_KEY, "&language=en-US&page=").concat(page);
           data = [];
-          _context2.prev = 3;
-          _context2.next = 6;
+          _context2.prev = 2;
+          _context2.next = 5;
           return regeneratorRuntime.awrap(fetch(allSeriesUrl));
 
-        case 6:
+        case 5:
           response = _context2.sent;
-          _context2.next = 9;
+          _context2.next = 8;
           return regeneratorRuntime.awrap(response.json());
 
-        case 9:
+        case 8:
           responseData = _context2.sent;
           data = responseData;
           console.log(data);
-          _context2.next = 16;
+          _context2.next = 15;
           break;
 
-        case 14:
-          _context2.prev = 14;
-          _context2.t0 = _context2["catch"](3);
+        case 13:
+          _context2.prev = 13;
+          _context2.t0 = _context2["catch"](2);
 
-        case 16:
+        case 15:
           seriesDiv.innerHTML = data.results.map(function (tv) {
             return renderSingleShow(tv);
           }).join("");
+          document.querySelectorAll('.media-div').forEach(function (item) {
+            item.addEventListener('click', function (e) {
+              var x = e.currentTarget.getAttribute("id");
+              console.log(x);
+            });
+          });
+          lessButton = document.querySelector(".prev-content");
+          lessButton.style.display = "none";
 
-        case 17:
+          if (data.page > 1) {
+            lessButton.style.display = "block";
+            lessButton.addEventListener("click", function () {
+              page--;
+              fetchSeries(page = page);
+              document.body.scrollTop = 0;
+              document.documentElement.scrollTop = 0;
+            });
+          }
+
+          moreButton = document.querySelector(".next-content");
+          moreButton.addEventListener("click", function () {
+            page++;
+            fetchSeries(page = page);
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+          });
+
+        case 22:
         case "end":
           return _context2.stop();
       }
     }
-  }, null, null, [[3, 14]]);
+  }, null, null, [[2, 13]]);
 }
-
-fetchSeries();
 
 function renderSingleShow(tv) {
   if (tv.poster_path != null) {
-    return "\n            <div>\n                <img src=\"".concat(_config.config.image_base_url + tv.poster_path, "\" class=\"featured\" alt=").concat(tv.name, ">\n                <p class=\"title-centered\">").concat(tv.name, "</p>\n            </div>\n            ");
+    return "\n            <div id=\"".concat(tv.id, "\" class=\"media-div\">\n                <img src=\"").concat(_config.config.image_base_url + tv.poster_path, "\" class=\"featured\" alt=").concat(tv.name, ">\n                <p class=\"title-centered\">").concat(tv.name, "</p>\n            </div>\n            ");
   }
 }
+
+topScroll();
+fetchSeries();
 },{"./config.js":"js/config.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -266,7 +322,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49551" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65123" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

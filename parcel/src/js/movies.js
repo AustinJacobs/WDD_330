@@ -50,10 +50,81 @@ searchButton.addEventListener("click", function () {
         searchedTitles.style.display = "block";
         searchedMoviesDiv.innerHTML = data.map(movie => renderSingleMovie(movie)).join("")
 
-        document.querySelectorAll('.media-div').forEach(item => {
+        document.querySelectorAll('.target').forEach(item => {
             item.addEventListener('click', e => {
-                let x = e.currentTarget.getAttribute("id");
-                console.log(x);
+                let path = e.currentTarget.getAttribute("id");
+
+                async function getSingleFilm() {
+                    let singleUrl = `${BASE_URL}movie/${path}?api_key=${API_KEY}`;
+                    let film = [];
+                    const response = await fetch(singleUrl);
+                    const responseData = await response.json();
+                    film = responseData;
+                    console.log(film);
+
+                    document.getElementById("no-scroll").style.overflowY = "hidden";
+
+                    let modalDiv = document.getElementById("modal");
+                    modalDiv.style.display = "block";
+
+                    let exitBtn = document.getElementById("exit");
+
+                    let overlayPoster = document.createElement("img");
+                    overlayPoster.setAttribute("src", config.image_base_url + film.poster_path)
+                    overlayPoster.setAttribute("class", "overlayImage")
+
+                    let overlayTitle = document.createElement("p");
+                    overlayTitle.setAttribute("class", "overlayTitleStyle")
+                    overlayTitle.innerHTML = film.title;
+
+                    let overlayYear = document.createElement("p");
+                    overlayYear.setAttribute("class", "overlayTinyStyle")
+                    overlayYear.innerHTML = film.release_date.slice(0, -6);
+
+                    let overlayGenre = document.createElement("p");
+                    overlayGenre.setAttribute("class", "overlayTinyStyle")
+                    overlayGenre.setAttribute("id", "genre")
+                    overlayGenre.innerHTML = film.genres[1].name;
+
+                    let overlayTime = document.createElement("p");
+                    overlayTime.setAttribute("class", "overlayTinyStyle")
+                    overlayTime.innerHTML = (film.runtime) + "min";
+
+                    let overlayRating = document.createElement("p");
+                    overlayRating.setAttribute("class", "overlayRatingStyle");
+                    overlayRating.innerHTML = "Rating: " + film.vote_average + "/10";
+
+                    let overlayOverview = document.createElement("p");
+                    overlayOverview.setAttribute("class", "overlayOverviewStyle");
+                    overlayOverview.innerHTML = film.overview;
+
+                    let modalMain = document.getElementById("modal-content-main");
+
+                    let modalTiny = document.createElement("div");
+                    modalTiny.setAttribute("id", "modal-tiny-details");
+
+                    modalMain.append(overlayPoster);
+                    modalMain.append(overlayTitle);
+                    modalMain.append(modalTiny);
+                    modalTiny.append(overlayYear);
+                    modalTiny.append(overlayGenre);
+                    modalTiny.append(overlayTime);
+                    modalMain.append(overlayRating);
+                    modalMain.append(overlayOverview);
+
+
+                    exitBtn.addEventListener("click", function () {
+                        modalDiv.style.display = "none";
+                        document.getElementById("no-scroll").style.overflowY = "auto";
+                        overlayPoster.remove()
+                        overlayTitle.remove()
+                        modalTiny.remove()
+                        overlayYear.remove()
+                        overlayRating.remove()
+                        overlayOverview.remove()
+                    })
+                }
+                getSingleFilm()
             })
         })
     }
@@ -89,27 +160,97 @@ async function fetchMovies(page = 1) {
     const moreButton = document.querySelector(".next-content");
     moreButton.addEventListener("click", function () {
         page++;
+        console.log(page);
         fetchMovies(page = page)
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     })
 
-    document.querySelectorAll('.media-div').forEach(item => {
+    document.querySelectorAll('.target').forEach(item => {
         item.addEventListener('click', e => {
-            let x = e.currentTarget.getAttribute("id");
-            console.log(x);
+            let path = e.currentTarget.getAttribute("id");
+
+            async function getSingleFilm() {
+                let singleUrl = `${BASE_URL}movie/${path}?api_key=${API_KEY}`;
+                let film = [];
+                const response = await fetch(singleUrl);
+                const responseData = await response.json();
+                film = responseData;
+                console.log(film);
+
+                document.getElementById("no-scroll").style.overflowY = "hidden";
+
+                let modalDiv = document.getElementById("modal");
+                modalDiv.style.display = "block";
+
+                let exitBtn = document.getElementById("exit");
+
+                let overlayPoster = document.createElement("img");
+                overlayPoster.setAttribute("src", config.image_base_url + film.poster_path)
+                overlayPoster.setAttribute("class", "overlayImage")
+
+                let overlayTitle = document.createElement("p");
+                overlayTitle.setAttribute("class", "overlayTitleStyle")
+                overlayTitle.innerHTML = film.title;
+
+                let overlayYear = document.createElement("p");
+                overlayYear.setAttribute("class", "overlayTinyStyle")
+                overlayYear.innerHTML = film.release_date.slice(0, -6);
+
+                let overlayGenre = document.createElement("p");
+                overlayGenre.setAttribute("class", "overlayTinyStyle")
+                overlayGenre.innerHTML = film.genres[0].name;
+
+                let overlayTime = document.createElement("p");
+                overlayTime.setAttribute("class", "overlayTinyStyle")
+                overlayTime.innerHTML = (film.runtime) + "min";
+
+                let overlayRating = document.createElement("p");
+                overlayRating.setAttribute("class", "overlayRatingStyle");
+                overlayRating.innerHTML = "Rating: " + film.vote_average + "/10";
+
+                let overlayOverview = document.createElement("p");
+                overlayOverview.setAttribute("class", "overlayOverviewStyle");
+                overlayOverview.innerHTML = film.overview;
+
+                let modalMain = document.getElementById("modal-content-main");
+
+                let modalTiny = document.createElement("div");
+                modalTiny.setAttribute("id", "modal-tiny-details");
+
+                modalMain.append(overlayPoster);
+                modalMain.append(overlayTitle);
+                modalMain.append(modalTiny);
+                modalTiny.append(overlayYear);
+                modalTiny.append(overlayGenre);
+                modalTiny.append(overlayTime);
+                modalMain.append(overlayRating);
+                modalMain.append(overlayOverview);
+
+
+                exitBtn.addEventListener("click", function () {
+                    modalDiv.style.display = "none";
+                    document.getElementById("no-scroll").style.overflowY = "auto";
+                    overlayPoster.remove()
+                    overlayTitle.remove()
+                    modalTiny.remove()
+                    overlayYear.remove()
+                    overlayRating.remove()
+                    overlayOverview.remove()
+                })
+            }
+            getSingleFilm()
         })
     })
 }
-
 
 function renderSingleMovie(movie) {
     if (movie.poster_path != null) {
         return (
             `
-            <div id="${movie.id}" class="media-div">
-                <img src="${config.image_base_url + movie.poster_path}" class="featured" alt=${movie.title}>
-                <p class="title-centered">${movie.title}</p>
+            <div class="media-div">
+                <img id="${movie.id}" src="${config.image_base_url + movie.poster_path}" class="featured target" alt=${movie.title}>
+                <p class="title-centered target">${movie.title}</p>
             </div>
             `
         )

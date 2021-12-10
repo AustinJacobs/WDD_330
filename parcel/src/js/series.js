@@ -50,10 +50,80 @@ searchButton.addEventListener("click", function () {
         searchedTitles.style.display = "block";
         searchedSeriesDiv.innerHTML = data.map(tv => renderSingleShow(tv)).join("")
 
-        document.querySelectorAll('.media-div').forEach(item => {
+        document.querySelectorAll('.target').forEach(item => {
             item.addEventListener('click', e => {
-                let x = e.currentTarget.getAttribute("id");
-                console.log(x);
+                let path = e.currentTarget.getAttribute("id");
+
+                async function getSingleShow() {
+                    let singleUrl = `${BASE_URL}tv/${path}?api_key=${API_KEY}`;
+                    let show = [];
+                    const response = await fetch(singleUrl);
+                    const responseData = await response.json();
+                    show = responseData;
+                    console.log(show);
+
+                    document.getElementById("no-scroll").style.overflowY = "hidden";
+
+                    let modalDiv = document.getElementById("modal");
+                    modalDiv.style.display = "block";
+
+                    let exitBtn = document.getElementById("exit");
+
+                    let overlayPoster = document.createElement("img");
+                    overlayPoster.setAttribute("src", config.image_base_url + show.poster_path)
+                    overlayPoster.setAttribute("class", "overlayImage")
+
+                    let overlayTitle = document.createElement("p");
+                    overlayTitle.setAttribute("class", "overlayTitleStyle")
+                    overlayTitle.innerHTML = show.name;
+
+                    let overlayYear = document.createElement("p");
+                    overlayYear.setAttribute("class", "overlayTinyStyle")
+                    overlayYear.innerHTML = show.first_air_date.slice(0, -6);
+
+                    let overlayGenre = document.createElement("p");
+                    overlayGenre.setAttribute("class", "overlayTinyStyle")
+                    overlayGenre.innerHTML = show.genres[0].name;
+
+                    let overlayTime = document.createElement("p");
+                    overlayTime.setAttribute("class", "overlayTinyStyle")
+                    overlayTime.innerHTML = (show.episode_run_time) + "min";
+
+                    let overlayRating = document.createElement("p");
+                    overlayRating.setAttribute("class", "overlayRatingStyle");
+                    overlayRating.innerHTML = "Rating: " + show.vote_average + "/10";
+
+                    let overlayOverview = document.createElement("p");
+                    overlayOverview.setAttribute("class", "overlayOverviewStyle");
+                    overlayOverview.innerHTML = show.overview;
+
+                    let modalMain = document.getElementById("modal-content-main");
+
+                    let modalTiny = document.createElement("div");
+                    modalTiny.setAttribute("id", "modal-tiny-details");
+
+                    modalMain.append(overlayPoster);
+                    modalMain.append(overlayTitle);
+                    modalMain.append(modalTiny);
+                    modalTiny.append(overlayYear);
+                    modalTiny.append(overlayGenre);
+                    modalTiny.append(overlayTime);
+                    modalMain.append(overlayRating);
+                    modalMain.append(overlayOverview);
+
+
+                    exitBtn.addEventListener("click", function () {
+                        modalDiv.style.display = "none";
+                        document.getElementById("no-scroll").style.overflowY = "auto";
+                        overlayPoster.remove()
+                        overlayTitle.remove()
+                        modalTiny.remove()
+                        overlayYear.remove()
+                        overlayRating.remove()
+                        overlayOverview.remove()
+                    })
+                }
+                getSingleShow()
             })
         })
     }
@@ -71,12 +141,83 @@ async function fetchSeries() {
     } catch (error) {
 
     }
+
     seriesDiv.innerHTML = data.results.map(tv => renderSingleShow(tv)).join("")
 
-    document.querySelectorAll('.media-div').forEach(item => {
+    document.querySelectorAll('.target').forEach(item => {
         item.addEventListener('click', e => {
-            let x = e.currentTarget.getAttribute("id");
-            console.log(x);
+            let path = e.currentTarget.getAttribute("id");
+
+            async function getSingleShow() {
+                let singleUrl = `${BASE_URL}tv/${path}?api_key=${API_KEY}`;
+                let show = [];
+                const response = await fetch(singleUrl);
+                const responseData = await response.json();
+                show = responseData;
+                console.log(show);
+
+                document.getElementById("no-scroll").style.overflowY = "hidden";
+
+                let modalDiv = document.getElementById("modal");
+                modalDiv.style.display = "block";
+
+                let exitBtn = document.getElementById("exit");
+
+                let overlayPoster = document.createElement("img");
+                overlayPoster.setAttribute("src", config.image_base_url + show.poster_path)
+                overlayPoster.setAttribute("class", "overlayImage")
+
+                let overlayTitle = document.createElement("p");
+                overlayTitle.setAttribute("class", "overlayTitleStyle")
+                overlayTitle.innerHTML = show.name;
+
+                let overlayYear = document.createElement("p");
+                overlayYear.setAttribute("class", "overlayTinyStyle")
+                overlayYear.innerHTML = show.first_air_date.slice(0, -6);
+
+                let overlayGenre = document.createElement("p");
+                overlayGenre.setAttribute("class", "overlayTinyStyle")
+                overlayGenre.innerHTML = show.genres[0].name;
+
+                let overlayTime = document.createElement("p");
+                overlayTime.setAttribute("class", "overlayTinyStyle")
+                overlayTime.innerHTML = (show.episode_run_time) + "min";
+
+                let overlayRating = document.createElement("p");
+                overlayRating.setAttribute("class", "overlayRatingStyle");
+                overlayRating.innerHTML = "Rating: " + show.vote_average + "/10";
+
+                let overlayOverview = document.createElement("p");
+                overlayOverview.setAttribute("class", "overlayOverviewStyle");
+                overlayOverview.innerHTML = show.overview;
+
+                let modalMain = document.getElementById("modal-content-main");
+
+                let modalTiny = document.createElement("div");
+                modalTiny.setAttribute("id", "modal-tiny-details");
+
+                modalMain.append(overlayPoster);
+                modalMain.append(overlayTitle);
+                modalMain.append(modalTiny);
+                modalTiny.append(overlayYear);
+                modalTiny.append(overlayGenre);
+                modalTiny.append(overlayTime);
+                modalMain.append(overlayRating);
+                modalMain.append(overlayOverview);
+
+
+                exitBtn.addEventListener("click", function () {
+                    modalDiv.style.display = "none";
+                    document.getElementById("no-scroll").style.overflowY = "auto";
+                    overlayPoster.remove()
+                    overlayTitle.remove()
+                    modalTiny.remove()
+                    overlayYear.remove()
+                    overlayRating.remove()
+                    overlayOverview.remove()
+                })
+            }
+            getSingleShow()
         })
     })
 
@@ -99,14 +240,16 @@ async function fetchSeries() {
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
     })
+
+
 }
 
 function renderSingleShow(tv) {
     if (tv.poster_path != null) {
         return (
             `
-            <div id="${tv.id}" class="media-div">
-                <img src="${config.image_base_url + tv.poster_path}" class="featured" alt=${tv.name}>
+            <div class="media-div">
+                <img id="${tv.id}" src="${config.image_base_url + tv.poster_path}" class="featured target" alt=${tv.name}>
                 <p class="title-centered">${tv.name}</p>
             </div>
             `

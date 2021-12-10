@@ -19,11 +19,18 @@
 
 </head>
 
-<body>
+<body id="no-scroll">
   <header>
     <img id="logo-image" src="images/logo-cropped200x200.png" alt="TV with a play button.">
     <h1 id="page_title">MEDIANEST</h1>
   </header>
+  <div id="modal">
+    <div id="modal-content-top">
+      <button id="exit"><i class="fas fa-chevron-circle-left"></i></i></button>
+      <p id="movie-detail">Movie Details</p>
+    </div>
+    <div id="modal-content-main"></div>
+  </div>
   <main>
     <div class="section-titles">
       <h2>Movies Tending Now</h2>
@@ -42,10 +49,10 @@
       <p class="slide">Swipe left for more content <i class="fas fa-long-arrow-alt-right"></i></p>
     </div>
     <div class="section-titles">
-      <h2>TV Shows Trending Now</h2>
+      <h2>Upcoming Movies</h2>
       <hr class="hr-small">
       <div class="scrollmenu">
-        <div id="trending-tv"></div>
+        <div id="upcoming-movies"></div>
       </div>
       <p class="slide">Swipe left for more content <i class="fas fa-long-arrow-alt-right"></i></p>
     </div>

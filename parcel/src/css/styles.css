@@ -254,3 +254,87 @@ div.scrollmenu a:hover {
 .media-div {
   margin-bottom: 20px;
 }
+
+#modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 100; /* Sit on top */
+  width: 100%; /* Full width */
+  top: 0;
+  height: 100%; /* Full height */
+  overflow-x: hidden; /* Enable scroll if needed */
+  overflow-y: auto; /* Enable scroll if needed */
+  background-color: rgba(0,0,0,.96); /* Black w/ opacity */
+}
+
+#modal-content-top {
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+  grid-template-rows: 1fr;
+  margin-top: 30px;
+}
+
+#modal-content-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-top: 20px;
+}
+#modal-tiny-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: 0 50px 0 50px;
+}
+
+#movie-detail {
+  grid-column: 2/3;
+  grid-row: 1/2;
+  justify-self: center;
+  align-self: center;
+  font-size: 18px;
+}
+
+#exit {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  color: #aaaaaa;
+  font-size: 40px;
+  background-color: transparent;
+  border: none;
+  color: #ef233c;
+  justify-self: end;
+}
+
+.overlayImage {
+  width: 260px;
+  border-radius: 10px;
+  justify-self: center;
+}
+
+.overlayTitleStyle {
+  justify-self: center;
+  font-size: 18px;
+  max-width: 240px;
+  text-align: center;
+  margin-top: 40px;
+}
+
+.overlayTinyStyle {
+  justify-self: center;
+  font-size: 14px;
+  text-align: center;
+  align-self: center;
+  color: #ef233c;
+}
+
+.overlayRatingStyle {
+  justify-self: center;
+  font-size: 16px;
+  max-width: 240px;
+  text-align: center;
+}
+
+.overlayOverviewStyle {
+  margin: 10px 50px 30px 50px;
+  max-width: 240px;
+  justify-self: center;
+}

@@ -30,12 +30,12 @@ export async function getTopMovies() {
     return data
 }
 
-export async function getTrendingTv() {
+export async function getUpcomingMovies() {
     let data = []
     try {
-        const response = await fetch(`${BASE_URL}trending/tv/week?api_key=${API_KEY}`)
+        const response = await fetch(`${BASE_URL}movie/upcoming?api_key=${API_KEY}`)
         const responseData = await response.json()
-        data = responseData.results;
+        data = responseData.results
     } catch (error) {
 
     }

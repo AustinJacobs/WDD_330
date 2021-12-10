@@ -2,12 +2,12 @@
 import {
     renderTrendingMovies,
     renderTopMovies,
-    renderTrendingTv
+    renderUpcomingMovies
 } from './home.js'
 
 function App() {
     renderTrendingMovies()
     renderTopMovies()
-    renderTrendingTv()
+    renderUpcomingMovies()
 }
 App()

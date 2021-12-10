@@ -42,7 +42,7 @@ searchButton.addEventListener("click", function () {
             const response = await fetch(searchURL)
             const responseData = await response.json()
             data = responseData.results
-            console.log(data);
+            // console.log(data);
         } catch (error) {
             console.log(error)
         }
@@ -67,19 +67,12 @@ async function fetchMovies(page = 1) {
         const response = await fetch(allMoviesUrl)
         const responseData = await response.json()
         data = responseData
-        console.log(data);
+        // console.log(data);
     } catch (error) {
         console.log(error)
     }
 
     moviesDiv.innerHTML = data.results.map(movie => renderSingleMovie(movie)).join("")
-
-    document.querySelectorAll('.media-div').forEach(item => {
-        item.addEventListener('click', e => {
-            let x = e.currentTarget.getAttribute("id");
-            console.log(x);
-        })
-    })
 
     const lessButton = document.querySelector(".prev-content");
     lessButton.style.display = "none";
@@ -99,6 +92,13 @@ async function fetchMovies(page = 1) {
         fetchMovies(page = page)
         document.body.scrollTop = 0;
         document.documentElement.scrollTop = 0;
+    })
+
+    document.querySelectorAll('.media-div').forEach(item => {
+        item.addEventListener('click', e => {
+            let x = e.currentTarget.getAttribute("id");
+            console.log(x);
+        })
     })
 }
 

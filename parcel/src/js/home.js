@@ -16,19 +16,16 @@ const API_KEY = config.api_key
 
 export async function renderTrendingMovies() {
     const movies = await getTrendingMovies()
-    console.log(movies)
     trendingMovieDiv.innerHTML = movies.map(movie => renderSingleMovie(movie)).join("")
 }
 
 export async function renderTopMovies() {
     const movies = await getTopMovies()
-    console.log(movies)
     topMovieDiv.innerHTML = movies.map(movie => renderSingleMovie(movie)).join("")
 }
 
 export async function renderUpcomingMovies() {
     const movies = await getUpcomingMovies()
-    console.log(movies)
     upcomingMovies.innerHTML = movies.map(movie => renderSingleMovie(movie)).join("")
 
     document.querySelectorAll('.target').forEach(item => {

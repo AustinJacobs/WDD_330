@@ -28,7 +28,7 @@ header {
 
 #menu {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   background-color: #ef233c;
   overflow: hidden;
@@ -91,7 +91,7 @@ header {
   padding-left: 20px;
   font-size: 20px;
   border: none;
-  border-radius: 14px;
+  border-radius: 30px;
   background: rgb(30, 30, 30);
   color: rgb(226, 226, 226);
 }
@@ -301,7 +301,7 @@ div.scrollmenu a:hover {
   background-color: transparent;
   border: none;
   color: #ef233c;
-  justify-self: end;
+  justify-self: center;
 }
 
 .overlayImage {
@@ -335,6 +335,21 @@ div.scrollmenu a:hover {
 
 .overlayOverviewStyle {
   margin: 10px 50px 30px 50px;
-  max-width: 240px;
+  font-size: 14px;
   justify-self: center;
+}
+
+#modal-logo-image {
+  color: #ef233c;
+  max-width: 50px;
+  justify-self: center;
+  align-self: center;
+}
+
+.errors {
+  display: none;
+  width: 200px;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 30px;
 }

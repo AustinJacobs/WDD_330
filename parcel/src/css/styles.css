@@ -256,15 +256,15 @@ div.scrollmenu a:hover {
 }
 
 #modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 100; /* Sit on top */
-  width: 100%; /* Full width */
+  display: none;
+  position: fixed;
+  z-index: 100;
+  width: 100%;
   top: 0;
-  height: 100%; /* Full height */
-  overflow-x: hidden; /* Enable scroll if needed */
-  overflow-y: auto; /* Enable scroll if needed */
-  background-color: rgba(0,0,0,.96); /* Black w/ opacity */
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: rgba(0,0,0,.96);
 }
 
 #modal-content-top {

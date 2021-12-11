@@ -33,7 +33,7 @@ export async function getTopMovies() {
 export async function getUpcomingMovies() {
     let data = []
     try {
-        const response = await fetch(`${BASE_URL}movie/top_rated?api_key=${API_KEY}`)
+        const response = await fetch(`${BASE_URL}movie/upcoming?api_key=${API_KEY}`)
         const responseData = await response.json()
         data = responseData.results
     } catch (error) {

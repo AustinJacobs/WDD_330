@@ -17,7 +17,7 @@ header {
   grid-template-columns: 1fr;
   align-items: center;
   justify-items: center;
-  background-color: rgb(226, 226, 226);
+  background-color: white;
 }
 
 #logo-image {
@@ -51,12 +51,16 @@ header {
 }
 
 .menu_link {
-  color: rgb(226, 226, 226);
+  color: white;
 }
 
 #search_bar {
   position: relative;
   margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 60px;
+  margin: 20px;
+  border-radius: 30px;
 }
 
 #search-button-series {
@@ -71,33 +75,30 @@ header {
 }
 
 #search-button-movies {
-  background-color: transparent;
+  background: rgb(30, 30, 30);
   border: none;
-  position: absolute;
-  top: 16px;
-  left: 25px;
-  font-size: 20px;
   color: #ef233c;
-  cursor: pointer;
+  font-size: 22px;
+  border-radius: 0 30px 30px 0;
 }
 
 .search_input {
   text-indent: 30px;
   height: 40px;
-  width: 85%;
+  width: 100%;
+  justify-self: start;
   margin: 0 auto;
   display: block;
-  padding: 5px;
-  padding-left: 20px;
+  padding: 7px;
   font-size: 20px;
   border: none;
-  border-radius: 30px;
+  border-radius: 30px 0 0 30px;
   background: rgb(30, 30, 30);
-  color: rgb(226, 226, 226);
+  color: white;
 }
 
 ::placeholder {
-  color: rgb(226, 226, 226);
+  color: white;
 }
 
 .hr-small {
@@ -264,7 +265,7 @@ div.scrollmenu a:hover {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  background-color: rgba(0,0,0,.96);
+  background-color: rgba(0, 0, 0, .96);
 }
 
 #modal-content-top {
@@ -279,6 +280,7 @@ div.scrollmenu a:hover {
   grid-template-columns: 1fr;
   margin-top: 20px;
 }
+
 #modal-tiny-details {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

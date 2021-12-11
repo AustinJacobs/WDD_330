@@ -3,14 +3,6 @@
         grid-template-columns: 1fr 1fr 1fr 1fr;
       }
 
-      #search-button-series {
-        left: 60px;
-      }
-      
-      #search-button-movies {
-        left: 60px;
-      }
-
       #modal-content-top {
         width: 400px;
         margin: 0 auto;
